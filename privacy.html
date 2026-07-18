@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy — QuoteMySmile</title>
+    <link rel="canonical" href="https://quotemysmile.com.au/privacy.html" />
+    <meta name="description" content="QuoteMySmile privacy policy. What we collect, why, and how we protect it." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QuoteMySmile" />
+    <meta property="og:url" content="https://quotemysmile.com.au/privacy.html" />
+    <meta property="og:title" content="Privacy policy — QuoteMySmile" />
+    <meta property="og:image" content="https://quotemysmile.com.au/og.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./style.css?v=2026-06-15-v7" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Allura&family=Inter:wght@300;400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/">QUOTE<em>my</em>SMILE</a>
+      <nav>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/for-dentists.html">For dentists</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/support.html">Support</a>
+      </nav>
+    </header>
+
+    <main class="legal">
+      <h1>Privacy policy</h1>
+      <p class="updated">Last updated · 14 June 2026</p>
+
+      <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+          <li><a href="#who">Who we are</a></li>
+          <li><a href="#collect">What we collect</a></li>
+          <li><a href="#why">Why we collect it</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#sharing">Sharing</a></li>
+          <li><a href="#payments">Payments</a></li>
+          <li><a href="#retention">Retention &amp; deletion</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </div>
+
+      <p>
+        This policy mirrors the in-app legal screen at
+        <code>/legal/privacy</code> inside the QuoteMySmile mobile app. Any
+        change made here must also be reflected in
+        <code>app/legal/privacy.tsx</code> and vice versa.
+      </p>
+
+      <h2 id="who">Who we are</h2>
+      <p>
+        QuoteMySmile is an independent Australian marketplace operated by
+        QuoteMySmile Pty Ltd ("we", "us"). We help patients receive indicative
+        quotes from AHPRA-registered Australian dental practitioners
+        ("dentists") for in-person clinical care.
+      </p>
+
+      <h2 id="collect">What we collect</h2>
+      <p>
+        <strong>Account:</strong> name, mobile number, email.<br />
+        <strong>Quote requests:</strong> photos you upload, symptoms you
+        describe, your GPS location, your radius, your health-fund details
+        (optional).<br />
+        <strong>Bookings:</strong> chosen dentist, slot, status, deposit
+        amount, Stripe PaymentIntent id, last four digits of the card.<br />
+        <strong>Audit:</strong> timestamps, IP, user agent on quote and
+        booking actions.
+      </p>
+
+      <h2 id="why">Why we collect it</h2>
+      <p>
+        To route your request to nearby AHPRA-registered dentists, to deliver
+        indicative quotes to you, to help you book a consult, and to keep an
+        immutable audit trail in case of complaint or regulator review. We do
+        not use your data for advertising and do not sell it.
+      </p>
+
+      <h2 id="location">Location</h2>
+      <p>
+        Location is used only when you submit a request. We do not track in
+        the background. Location data linked to a request is deleted thirty
+        days after the request closes.
+      </p>
+
+      <h2 id="photos">Photos</h2>
+      <p>
+        Photos are stored in a private bucket. They are visible to you and to
+        dentists matched to your request by AHPRA registration and geofence.
+        Photos are deleted thirty days after the request closes unless you
+        explicitly retain them.
+      </p>
+
+      <h2 id="sharing">Sharing</h2>
+      <p>
+        Photos and request details are shared only with AHPRA-registered
+        dentists within your chosen radius. When you book, your name and
+        contact details are released to the booked dentist. We do not share
+        with insurers, marketers, or other patients.
+      </p>
+      <p>
+        Stripe processes payments under its own privacy terms. Resend handles
+        transactional email. Expo Push delivers push notifications. Supabase
+        (managed Postgres + storage on AWS Sydney) hosts our data.
+      </p>
+
+      <h2 id="payments">Payments</h2>
+      <p>
+        Card details are handled by Stripe — we never see your card number.
+        We retain the Stripe PaymentIntent id and last four digits of the
+        card for tax, dispute, and chargeback purposes (7 years per ATO
+        rules).
+      </p>
+      <p>
+        QuoteMySmile is <strong>free for patients</strong>. The deposit you
+        pay at booking is fully refunded when you attend the consult. Our
+        only revenue is a flat A$5 platform fee paid by the dentist on each
+        attended booking — never billed to you, never deducted from your
+        deposit.
+      </p>
+
+      <h2 id="retention">Retention &amp; deletion</h2>
+      <p>
+        Photos, location, symptom data: <strong>30 days</strong> after the
+        request closes.<br />
+        Booking records: <strong>7 years</strong> (anonymised on account
+        deletion).<br />
+        Audit logs: <strong>2 years</strong>.<br />
+        Marketing emails: until you unsubscribe.
+      </p>
+
+      <h2 id="rights">Your rights</h2>
+      <p>
+        Under the Privacy Act 1988 (Cth) you can request a copy of your data,
+        correct it, or have it deleted. The fastest path is in-app: Settings
+        → Delete account. Otherwise email
+        <a href="mailto:privacy@quotemysmile.com.au">privacy@quotemysmile.com.au</a>.
+        Booking records are retained anonymised for legal and tax purposes.
+      </p>
+
+      <h2 id="contact">Contact</h2>
+      <p>
+        Privacy questions:
+        <a href="mailto:privacy@quotemysmile.com.au">privacy@quotemysmile.com.au</a>.
+        Unresolved complaints: Office of the Australian Information
+        Commissioner (<a href="https://www.oaic.gov.au">oaic.gov.au</a>).
+      </p>
+    </main>
+
+    <footer>
+      <div class="footer-top">
+        <span class="wordmark sm">QUOTE<em>my</em>SMILE</span>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/support.html">Support</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 QuoteMySmile Pty Ltd</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1474 @@
+/* QuoteMySmile marketing site — editorial cream + brushed gold. */
+
+/* FOUT prevention — bone background on html prevents the white flash
+   while the stylesheet is downloading. font-display: swap declared in
+   the Google Fonts URL ensures text is always visible. */
+html {
+  background: #f5f1e8;
+  color-scheme: light;
+}
+
+:root {
+  --bone: #f5f1e8;
+  --eggshell: #faf6ec;
+  --linen: #e8e0cd;
+  --taupe: #6e6457;
+  --walnut: #4d423a;
+  --espresso: #2a2520;
+  --gold: #a9cfc0;
+  /* Brand teal used for any TEXT on cream — readable contrast. */
+  --teal: #2f6f66;
+  --teal-dark: #1f4f47;
+  --clay: #9e5e47;
+  --forest: #4a6b4f;
+  --bone-shadow: 0 1px 2px rgba(42, 37, 32, 0.05);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bone);
+  color: var(--espresso);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { color: var(--teal-dark); text-decoration: underline; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================ */
+/* Wordmark                                                     */
+/* ============================================================ */
+/* Initial wordmark — Italiana editorial caps + Allura signature "my". */
+.wordmark {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a1612;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  position: relative;
+  padding-bottom: 48px;
+}
+/* Smile underline sits BELOW the text with clearance — no longer overlaps QUOTE/SMILE. */
+.wordmark::after {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: 2px;
+  height: 36px;
+  background: url("/smile.png?v=v3") center/contain no-repeat;
+  pointer-events: none;
+}
+.wordmark em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0;
+  color: #4A8C82;
+  margin: 0 2px;
+  display: inline-block;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+}
+/* Hover: keep "my" mint, never default link blue/black underline */
+a.wordmark:hover,
+a.wordmark:hover em,
+a.wordmark:focus,
+a.wordmark:focus em {
+  color: var(--espresso);
+  text-decoration: none;
+}
+a.wordmark:hover em,
+a.wordmark:focus em {
+  color: #4A8C82;
+}
+.wordmark.sm { font-size: 13px; letter-spacing: 0.10em; padding-bottom: 36px; gap: 0; }
+.wordmark.sm em {
+  font-size: 20px;
+  margin: 0 1px;
+}
+.wordmark.sm::after { height: 26px; bottom: 2px; }
+
+/* ============================================================ */
+/* Topbar                                                       */
+/* ============================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 40px;
+  border-bottom: 1px solid var(--linen);
+  max-width: 1280px;
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  background: var(--bone);
+  backdrop-filter: saturate(180%) blur(8px);
+  z-index: 10;
+}
+.topbar nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.topbar nav a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--walnut);
+}
+.topbar nav a.nav-cta {
+  background: var(--espresso);
+  color: var(--bone);
+  padding: 10px 16px;
+  letter-spacing: 0.18em;
+}
+.topbar nav a.nav-cta:hover { text-decoration: none; opacity: 0.9; }
+@media (max-width: 720px) {
+  .topbar { padding: 16px 22px; }
+  .topbar nav { gap: 14px; }
+  .topbar nav a:not(.nav-cta) { display: none; }
+}
+
+/* ============================================================ */
+/* Main + Sections                                              */
+/* ============================================================ */
+main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
+@media (max-width: 720px) { main { padding: 0 22px 80px; } }
+.kicker {
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--taupe);
+  margin: 0 0 22px;
+}
+/* Hero display — Inter Light reads as premium clinical, not magazine.
+   Allura script reserved for the one "in your hand" / accent move. */
+.display {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 200;
+  font-size: clamp(40px, 5.8vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px;
+  color: var(--espresso);
+}
+.display em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  color: #2F6F66;
+  font-size: 1.4em;
+  letter-spacing: 0;
+  line-height: 1;
+  font-weight: 400;
+}
+.lede {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--walnut);
+  max-width: 560px;
+  margin: 0 0 36px;
+}
+.lede.tighter { max-width: 640px; margin: 0 0 36px; }
+.microcopy {
+  font-size: 12px;
+  color: var(--taupe);
+  margin: 14px 0 0;
+  letter-spacing: 0.02em;
+}
+.centered-link { text-align: center; margin-top: 48px; }
+.centered-link a {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: #2F6F66;
+}
+.centered-link a:hover { color: #1F4F47; }
+
+/* ============================================================ */
+/* HERO with phone mockup                                        */
+/* ============================================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  padding: 80px 0 100px;
+  border-bottom: 1px solid var(--linen);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 80px; }
+  .hero-phone { display: none; }
+}
+.waitlist-form {
+  display: flex;
+  gap: 8px;
+  max-width: 460px;
+  margin-top: 8px;
+}
+.waitlist-form input[type="email"] {
+  flex: 1;
+  padding: 14px 18px;
+  border: 1px solid var(--linen);
+  background: var(--eggshell);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--espresso);
+}
+.waitlist-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.waitlist-form button {
+  padding: 14px 22px;
+  background: var(--espresso);
+  color: var(--bone);
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.waitlist-form button:hover { background: #1f1a16; }
+.waitlist-form.centered { margin: 0 auto; }
+
+/* CTA button + link */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 8px 0 14px;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--espresso);
+  color: var(--bone);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.cta-btn:hover { background: #1f1a16; text-decoration: none; }
+.cta-link {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  color: #2F6F66;
+  letter-spacing: 0.02em;
+}
+.cta-link:hover { color: #1F4F47; }
+
+/* QR card */
+.qr-wrap { display: flex; justify-content: center; margin: 28px 0 18px; }
+.qr-card {
+  background: var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 24px 30px;
+  text-align: center;
+}
+.qr-card img { display: block; margin: 0 auto 12px; }
+.qr-card p {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.badges.centered-row { justify-content: center; }
+
+/* Free banner */
+.free-banner {
+  background: var(--eggshell);
+  padding: 80px 40px;
+  text-align: center;
+  border-top: 1px solid var(--linen);
+  border-bottom: 1px solid var(--linen);
+  margin: 0 -40px;
+}
+.free-banner .lede { margin: 0 auto; }
+.free-banner em em { font-style: normal; }
+@media (max-width: 720px) {
+  .free-banner { padding: 56px 22px; margin: 0 -22px; }
+}
+
+/* ============================================================ */
+/* Phone mockup — iPhone 17 Pro Max (6.9" titanium)             */
+/* ============================================================ */
+.hero-phone { display: flex; justify-content: center; }
+.phone {
+  width: 340px;
+  height: 720px;
+  /* Titanium edge — three-stop gradient gives the brushed feel */
+  background: linear-gradient(
+    160deg,
+    #4a4543 0%,
+    #2a2520 38%,
+    #1a1614 60%,
+    #2a2520 100%
+  );
+  border-radius: 58px;
+  padding: 5px;
+  box-shadow:
+    0 50px 80px -28px rgba(42, 37, 32, 0.32),
+    0 18px 38px -10px rgba(42, 37, 32, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+/* Inner bezel (the black ring around the screen) */
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 54px;
+  background: #0a0908;
+  z-index: 0;
+}
+/* Side-button hint */
+.phone::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 180px;
+  width: 3px;
+  height: 86px;
+  background: linear-gradient(to bottom, #1a1614 0%, #3a3532 50%, #1a1614 100%);
+  border-radius: 2px 0 0 2px;
+}
+/* Dynamic Island — iPhone 17 Pro Max signature */
+.phone-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 36px;
+  background: #000;
+  border-radius: 22px;
+  z-index: 3;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.phone-screen {
+  background: var(--bone);
+  border-radius: 50px;
+  height: 100%;
+  padding: 60px 24px 28px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.screen-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--linen);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+.screen-wordmark {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 200;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+}
+.screen-wordmark em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  text-transform: none;
+  color: var(--gold);
+  font-size: 22px;
+  letter-spacing: 0;
+  transform: translateY(4px) rotate(-2deg);
+  margin: 0 4px 0 5px;
+  font-weight: 400;
+}
+.screen-dot {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--walnut);
+}
+.screen-dot::before {
+  content: "● ";
+  color: var(--forest);
+  font-size: 7px;
+}
+.screen-kicker {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin: 0 0 6px;
+  text-align: center;
+}
+.screen-count {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 36px;
+  text-align: center;
+  color: var(--espresso);
+  margin: 0 0 24px;
+}
+.quote-card {
+  background: var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+.quote-card.faded { opacity: 0.7; }
+.quote-card.pulse {
+  border-color: var(--gold);
+  background: rgba(169, 207, 192, 0.08);
+  animation: pulse 1.6s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(169, 207, 192, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(169, 207, 192, 0.18); }
+}
+.qc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--espresso);
+  margin-bottom: 4px;
+  letter-spacing: 0;
+}
+.qc-row .gold {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  color: var(--gold);
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+.qc-row > span:last-child {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--walnut);
+  letter-spacing: 0.01em;
+}
+.qc-meta {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--taupe);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qc-meta .ahpra-tick {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--gold);
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.qc-meta .ahpra-tick::before {
+  content: "✓";
+  font-size: 9px;
+  line-height: 1;
+}
+.pulse-tag {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ============================================================ */
+/* Feature gallery — three smaller phones in a row              */
+/* ============================================================ */
+.feature-gallery {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--linen);
+}
+.feature-gallery .display {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.feature-gallery .lede {
+  text-align: center;
+  margin: 0 auto 56px;
+}
+.feature-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  align-items: end;
+}
+.feature-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.feature-col .phone-mini {
+  width: 260px;
+  height: 552px;
+  background: linear-gradient(
+    160deg,
+    #4a4543 0%,
+    #2a2520 38%,
+    #1a1614 60%,
+    #2a2520 100%
+  );
+  border-radius: 44px;
+  padding: 4px;
+  box-shadow:
+    0 32px 56px -22px rgba(42, 37, 32, 0.28),
+    0 12px 24px -8px rgba(42, 37, 32, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  margin-bottom: 32px;
+}
+.feature-col .phone-mini::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 40px;
+  background: #0a0908;
+  z-index: 0;
+}
+.feature-col .phone-mini::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 130px;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, #1a1614 0%, #3a3532 50%, #1a1614 100%);
+  border-radius: 2px 0 0 2px;
+}
+.feature-col .phone-mini .phone-notch {
+  top: 10px;
+  width: 96px;
+  height: 28px;
+  background: #000;
+  border-radius: 18px;
+  z-index: 3;
+}
+.feature-col .phone-mini .phone-screen {
+  border-radius: 38px;
+  padding: 46px 18px 18px;
+  z-index: 1;
+}
+.feature-col h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--espresso);
+  margin: 0 0 8px;
+}
+.feature-col p {
+  color: var(--walnut);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ------------- Geolocation phone ------------- */
+.scr-gps .gps-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--walnut);
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.scr-gps .gps-status::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: var(--forest);
+  border-radius: 50%;
+}
+.scr-gps .suburb {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 26px;
+  text-align: center;
+  color: var(--espresso);
+  margin: 0 0 2px;
+}
+.scr-gps .suburb-meta {
+  text-align: center;
+  font-size: 10px;
+  color: var(--taupe);
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.scr-gps .map-stage {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, #f1ecdc 0%, #ede5cd 100%);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.scr-gps .grid-line {
+  position: absolute;
+  background: rgba(169, 207, 192, 0.15);
+}
+.scr-gps .grid-v1 { left: 28%; top: 0; width: 1px; height: 100%; }
+.scr-gps .grid-v2 { left: 60%; top: 0; width: 1px; height: 100%; }
+.scr-gps .grid-h1 { top: 32%; left: 0; height: 1px; width: 100%; }
+.scr-gps .grid-h2 { top: 64%; left: 0; height: 1px; width: 100%; }
+.scr-gps .radius-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.scr-gps .you-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  background: var(--gold);
+  border: 3px solid var(--bone);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(169, 207, 192, 0.18);
+}
+.scr-gps .clinic-pin {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--espresso);
+}
+.scr-gps .c1 { left: 20%; top: 30%; }
+.scr-gps .c2 { left: 72%; top: 38%; }
+.scr-gps .c3 { left: 30%; top: 68%; }
+.scr-gps .c4 { left: 60%; top: 70%; }
+.scr-gps .c5 { left: 78%; top: 62%; }
+.scr-gps .radius-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--taupe);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.scr-gps .slider {
+  height: 1px;
+  background: var(--linen);
+  position: relative;
+  margin: 12px 0 18px;
+}
+.scr-gps .slider::after {
+  content: "";
+  position: absolute;
+  left: 40%;
+  top: -5px;
+  width: 11px;
+  height: 11px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.scr-gps .slider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 40%;
+  background: var(--gold);
+}
+.scr-gps .count {
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+}
+.scr-gps .count-label {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--taupe);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ------------- Photo guide phone ------------- */
+.scr-photo {
+  background: #0E0C0A !important;
+  color: var(--bone);
+  padding: 16px 14px !important;
+  height: 460px;
+  position: relative;
+}
+.scr-photo .top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.5);
+}
+.scr-photo .step-label {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(245, 241, 232, 0.55);
+  text-transform: uppercase;
+  margin: 18px 0 4px;
+}
+.scr-photo h4 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 26px;
+  color: var(--bone);
+}
+.scr-photo .guide {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scr-photo .guide-ring-outer {
+  position: absolute;
+  width: 160px;
+  height: 110px;
+  border: 1px dashed rgba(169, 207, 192, 0.6);
+  border-radius: 60% / 50%;
+}
+.scr-photo .guide-ring-inner {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  border: 1px solid rgba(169, 207, 192, 0.45);
+  border-radius: 60% / 50%;
+}
+.scr-photo .crosshair {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-left: 1px solid var(--gold);
+  border-top: 1px solid var(--gold);
+}
+.scr-photo .ch-tl { top: 8px; left: 8px; }
+.scr-photo .ch-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+.scr-photo .ch-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+.scr-photo .ch-br { bottom: 8px; right: 8px; transform: scale(-1, -1); }
+.scr-photo .progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 28px 0 16px;
+}
+.scr-photo .dot {
+  width: 26px;
+  height: 3px;
+  background: rgba(245, 241, 232, 0.18);
+  border-radius: 2px;
+}
+.scr-photo .dot.done { background: var(--gold); }
+.scr-photo .dot.active { background: rgba(169, 207, 192, 0.55); }
+.scr-photo .shutter-ring {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin: 14px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scr-photo .shutter {
+  width: 38px;
+  height: 38px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.scr-photo .footnote {
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: rgba(245, 241, 232, 0.45);
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+/* ------------- Booking confirm phone ------------- */
+.scr-book .check {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin: 22px auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 24px;
+}
+.scr-book .status {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--taupe);
+  text-transform: uppercase;
+}
+.scr-book h4 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  text-align: center;
+  margin: 6px 0 20px;
+  color: var(--espresso);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.scr-book .booking-card {
+  background: var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 16px 14px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.scr-book .booking-card .clinic {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: var(--espresso);
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.scr-book .booking-card .dentist {
+  font-size: 10px;
+  color: var(--taupe);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.scr-book .booking-card .slot {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
+  color: var(--gold);
+  line-height: 1.15;
+}
+.scr-book .deposit-strip {
+  border: 1px solid var(--gold);
+  background: rgba(169, 207, 192, 0.05);
+  padding: 10px 14px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.scr-book .deposit-strip .label {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin-bottom: 2px;
+}
+.scr-book .deposit-strip .amount {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--gold);
+  font-size: 18px;
+}
+.scr-book .deposit-strip .sub {
+  font-size: 8px;
+  color: var(--taupe);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.scr-book .action-row {
+  display: flex;
+  gap: 6px;
+}
+.scr-book .action {
+  flex: 1;
+  border: 1px solid var(--linen);
+  background: var(--bone);
+  padding: 9px 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--walnut);
+}
+.scr-book .action.primary {
+  background: var(--espresso);
+  border-color: var(--espresso);
+  color: var(--bone);
+}
+
+@media (max-width: 900px) {
+  .feature-row { grid-template-columns: 1fr; gap: 56px; }
+}
+
+/* ============================================================ */
+/* Editorial line icons — gold, thin stroke, 32×32 viewBox      */
+/* ============================================================ */
+.icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+.icon-lg { width: 44px; height: 44px; stroke-width: 0.85; }
+.icon-xl { width: 56px; height: 56px; stroke-width: 0.75; }
+
+/* XL icon for the 3 steps gets an enclosing thin circle to feel like a
+   numismatic medal — sets the editorial tone */
+.prop .icon-xl-wrap {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 22px;
+  border: 1px solid var(--linen);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bone);
+}
+
+/* Trust list rows use a leading icon */
+.trust li {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.trust li .icon { margin-top: 3px; }
+.trust li strong { margin-top: -2px; }
+
+/* For-dentists bullet cards use a top icon */
+.bullets-2col li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bullets-2col li .icon { margin-bottom: 6px; }
+
+/* The 3-step prop cards centre an XL icon */
+.prop .icon-xl { margin: 0 auto 18px; display: block; }
+.prop { text-align: center; }
+/* .prop .n color now set in .prop .n rule below (deep teal for legibility) */
+
+/* ============================================================ */
+/* Value props — premium-dental cards                           */
+/* ============================================================ */
+.props {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--linen);
+  text-align: center;
+}
+.props .display { max-width: 760px; margin-left: auto; margin-right: auto; }
+.props .lede { margin-left: auto; margin-right: auto; }
+.prop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 56px 0 0;
+  text-align: left;
+}
+.prop {
+  position: relative;
+  padding: 0;
+  border: 1px solid var(--linen);
+  background: #fbf7ed;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.prop:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow:
+    0 28px 56px -28px rgba(42, 37, 32, 0.18),
+    0 12px 24px -12px rgba(169, 207, 192, 0.25);
+}
+/* Top visual stripe with the icon and a faint dental gradient */
+.prop .visual {
+  position: relative;
+  height: 200px;
+  background:
+    radial-gradient(circle at 28% 30%, rgba(169, 207, 192, 0.22) 0%, transparent 55%),
+    linear-gradient(160deg, #f1ecdc 0%, #ede5cd 100%);
+  border-bottom: 1px solid var(--linen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.prop .visual::after {
+  /* faint molar contour as a watermark */
+  content: "";
+  position: absolute;
+  right: -28px;
+  bottom: -30px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(42, 37, 32, 0.05) 0%, transparent 60%);
+}
+.prop .visual .icon-xl-wrap {
+  margin: 0;
+  width: 96px;
+  height: 96px;
+  background: var(--bone);
+  border: 1px solid var(--linen);
+  box-shadow: 0 12px 24px -10px rgba(42, 37, 32, 0.10);
+}
+.prop .body {
+  padding: 28px 26px 30px;
+  position: relative;
+}
+.prop .n {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #2F6F66;
+  margin-bottom: 14px;
+  padding: 6px 0 4px;
+  border-top: 2px solid #2F6F66;
+}
+.prop h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  color: var(--espresso);
+  letter-spacing: -0.005em;
+}
+.prop p { margin: 0; color: var(--walnut); font-size: 15px; line-height: 1.55; }
+/* Tiny meta row at bottom — keeps each card unique */
+.prop .meta {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--linen);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.prop .meta strong {
+  color: var(--espresso);
+  font-weight: 500;
+}
+@media (max-width: 720px) { .prop-grid { grid-template-columns: 1fr; gap: 18px; } }
+
+/* ============================================================ */
+/* Positioning banner                                            */
+/* ============================================================ */
+.positioning {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--linen);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.positioning .badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.positioning .badge-row span {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  background: var(--bone);
+  border: 1px solid var(--linen);
+  color: var(--walnut);
+}
+.positioning .badge-row span.gold {
+  background: rgba(169, 207, 192, 0.18);
+  border-color: var(--gold);
+  color: #2f7d6b;
+}
+.positioning .headline {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--espresso);
+  margin: 0;
+}
+.positioning .headline em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  color: #2F6F66;
+  font-size: 1.4em;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.positioning .ribbon {
+  position: relative;
+  background:
+    linear-gradient(150deg, rgba(169, 207, 192, 0.22) 0%, rgba(169, 207, 192, 0) 70%),
+    var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 40px 36px;
+}
+.positioning .ribbon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 36px;
+  width: 4px;
+  height: 56px;
+  background: var(--gold);
+}
+.positioning .ribbon .small {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin: 0 0 14px;
+}
+.positioning .ribbon p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--espresso);
+  margin: 0;
+}
+.positioning .ribbon p em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  color: #2F6F66;
+  font-size: 1.3em;
+  letter-spacing: 0;
+}
+.positioning .stats {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.positioning .stats .stat {
+  text-align: center;
+}
+.positioning .stats .stat .big {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.positioning .stats .stat .label {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+@media (max-width: 800px) {
+  .positioning { grid-template-columns: 1fr; gap: 40px; padding: 64px 0; }
+}
+
+/* ============================================================ */
+/* Trust — teal gradient panel with white type                   */
+/* ============================================================ */
+.trust {
+  padding: 96px 6vw;
+  margin: 0;
+  border-bottom: 0;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,0.10), transparent 60%),
+    radial-gradient(110% 90% at 100% 100%, rgba(255,255,255,0.08), transparent 55%),
+    linear-gradient(135deg, #4A8C82 0%, #5FA89B 40%, #7DBDB0 80%, #A9CFC0 100%);
+  color: #ffffff;
+  position: relative;
+  isolation: isolate;
+}
+.trust .display { color: #ffffff; white-space: nowrap; font-size: clamp(18px, 3.6vw, 46px); }
+.trust .display em {
+  color: #ffffff;
+  /* keep the Allura script feel but white + subtle ink */
+  text-shadow: 0 1px 0 rgba(0, 50, 45, 0.18);
+}
+.trust .lede { color: rgba(255, 255, 255, 0.92); }
+.trust ul {
+  padding: 0;
+  list-style: none;
+  margin: 24px 0 0;
+}
+.trust li {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+}
+.trust li:last-child { border-bottom: 0; }
+.trust li strong {
+  color: #ffffff;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+  letter-spacing: 0.005em;
+}
+/* Icons re-stroke to white inside the teal panel */
+.trust .icon { stroke: #ffffff; opacity: 0.92; }
+.trust .icon circle[fill="#A9CFC0"],
+.trust .icon [fill="#A9CFC0"] { fill: #ffffff; }
+
+/* ============================================================ */
+/* FAQ                                                           */
+/* ============================================================ */
+.faq { padding: 96px 0; border-bottom: 1px solid var(--linen); }
+.faq details {
+  border-bottom: 1px solid var(--linen);
+  padding: 22px 0;
+}
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 22px;
+  color: var(--espresso);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 16px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  color: var(--teal);
+  font-size: 26px;
+  margin-left: 16px;
+  line-height: 1;
+}
+.faq details[open] summary::after { content: "–"; }
+.faq details p {
+  margin: 14px 0 6px;
+  font-size: 16px;
+  color: var(--walnut);
+  line-height: 1.7;
+  max-width: 740px;
+}
+
+/* ============================================================ */
+/* CTA                                                           */
+/* ============================================================ */
+.cta {
+  padding: 100px 0 40px;
+  text-align: center;
+}
+.cta .display { margin: 0 0 18px; }
+.cta .lede { margin: 0 auto 28px; }
+.cta .microcopy { margin-top: 18px; }
+
+/* ============================================================ */
+/* Footer                                                        */
+/* ============================================================ */
+footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 40px 60px;
+  border-top: 1px solid var(--linen);
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--linen);
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.footer-top nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-top nav a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--walnut);
+}
+.footer-bottom {
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-bottom p { margin: 0; font-size: 12px; color: var(--taupe); }
+@media (max-width: 720px) {
+  footer { padding: 28px 22px 48px; }
+}
+
+/* ============================================================ */
+/* Legal + content pages                                         */
+/* ============================================================ */
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 40px 120px;
+}
+.legal h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400;
+  margin: 0 0 12px;
+  line-height: 1.05;
+}
+.legal .updated {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 48px;
+}
+.legal h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 48px 0 14px;
+  color: var(--espresso);
+  scroll-margin-top: 100px;
+}
+.legal h2 a.anchor {
+  font-size: 14px;
+  color: var(--linen);
+  margin-left: 8px;
+}
+.legal h2:hover a.anchor { color: var(--teal); }
+.legal p {
+  color: var(--walnut);
+  font-size: 16px;
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+.legal ul {
+  padding-left: 22px;
+  color: var(--walnut);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.legal code {
+  background: var(--eggshell);
+  padding: 1px 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+}
+.legal .toc {
+  background: var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 22px 26px;
+  margin-bottom: 36px;
+}
+.legal .toc h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.legal .toc ol {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.legal .toc a { color: var(--walnut); }
+
+/* ============================================================ */
+/* For-dentists page                                             */
+/* ============================================================ */
+.dentist-hero {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--linen);
+}
+.dentist-hero .lede { max-width: 720px; }
+.bullets-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+  margin: 36px 0 0;
+  list-style: none;
+  padding: 0;
+}
+.bullets-2col li {
+  padding: 18px 22px;
+  border: 1px solid var(--linen);
+  background: var(--eggshell);
+  color: var(--walnut);
+}
+.bullets-2col li strong {
+  color: var(--espresso);
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+}
+@media (max-width: 720px) { .bullets-2col { grid-template-columns: 1fr; } }
+.pricing-row {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--linen);
+}
+.pricing-row .price {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(64px, 10vw, 120px);
+  color: var(--teal);
+  line-height: 1;
+  margin: 24px 0 12px;
+}

@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QuoteMySmile — Real dentists, real quotes, in minutes</title>
+    <meta
+      name="description"
+      content="AHPRA-registered Australian dentists send personally-signed indicative quotes from your guided photos. Pick the best in minutes. Free for patients."
+    />
+    <meta name="theme-color" content="#F5F1E8" />
+    <link rel="canonical" href="https://quotemysmile.com.au/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QuoteMySmile" />
+    <meta property="og:url" content="https://quotemysmile.com.au/" />
+    <meta property="og:title" content="QuoteMySmile — Live dental quotes, near you" />
+    <meta property="og:description" content="AHPRA-registered dentists send personally-signed quotes — live, on your screen." />
+    <meta property="og:image" content="https://quotemysmile.com.au/og.png" />
+    <meta property="og:locale" content="en_AU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QuoteMySmile — Live dental quotes, near you" />
+    <meta name="twitter:image" content="https://quotemysmile.com.au/og.png" />
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="./style.css?v=2026-06-15-v7" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Allura&family=Inter:wght@300;400;500;600&display=swap"
+    />
+
+    <!-- Organisation + MedicalBusiness + MobileApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "QuoteMySmile",
+      "legalName": "QuoteMySmile Pty Ltd",
+      "url": "https://quotemysmile.com.au",
+      "logo": "https://quotemysmile.com.au/apple-touch-icon.png",
+      "foundingDate": "2026",
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@quotemysmile.com.au",
+        "contactType": "customer support",
+        "areaServed": "AU",
+        "availableLanguage": "en"
+      },
+      "sameAs": []
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "QuoteMySmile",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "MedicalApplication",
+      "url": "https://quotemysmile.com.au",
+      "description": "Australia's first live dental quote marketplace. Real, personally-signed quotes from AHPRA-registered dentists in minutes.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1",
+        "bestRating": "5"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Dental quote marketplace",
+      "provider": { "@type": "Organization", "name": "QuoteMySmile Pty Ltd" },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "audience": { "@type": "PeopleAudience", "audienceType": "Dental patients" },
+      "description": "Compare live indicative dental quotes from AHPRA-registered dentists near you. Free for patients."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How accurate are the quotes really?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each quote is the work of a real, named, AHPRA-registered dentist personally reviewing your four guided photos. They commit their name and registration number to it. In practice the final fee at the chair-side is usually within a few percent of the indicative quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does QuoteMySmile cost me as a patient?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nothing. QuoteMySmile is free for patients. Booking a consult places a fully refundable platform deposit ($50–$100) on your card, which is returned in full when you attend."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is QuoteMySmile available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Launching in inner-east Melbourne first — Camberwell, Hawthorn, Glen Iris, Surrey Hills. Other Australian metros follow as dentists join."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the dentists really qualified?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every quoting dentist is verified against the AHPRA public register before they can send a quote. Suspended or restricted practitioners are silently dropped."
+          }
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/">QUOTE<em>my</em>SMILE</a>
+      <nav>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/for-dentists.html">For dentists</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#download">Download</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ============================================================ -->
+      <!-- HERO                                                          -->
+      <!-- ============================================================ -->
+      <section class="hero">
+        <div class="hero-text">
+          <p class="kicker">EST. 2026 · AUSTRALIA</p>
+          <h1 class="display">
+            Your dream smile,<br /><em>in your hand.</em>
+          </h1>
+          <p class="lede">
+            Real AHPRA-registered Australian dentists send personally-signed
+            indicative quotes from your guided photos — and you pick the one
+            that suits, on your screen, in minutes.
+          </p>
+          <div class="hero-cta">
+            <a class="cta-btn" href="#download">Get the app</a>
+            <a class="cta-link" href="/how-it-works.html">See how it works ›</a>
+          </div>
+          <p class="microcopy">
+            Free for patients. Always.
+          </p>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="hero-phone" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-top">
+                <span class="screen-wordmark">QUOTE<em>my</em>SMILE</span>
+                <span class="screen-dot">CLOSES 24:48</span>
+              </div>
+              <p class="screen-kicker">YOUR QUOTES · LIVE</p>
+              <p class="screen-count">3 quotes</p>
+              <div class="quote-card">
+                <div class="qc-row">
+                  <span>Camberwell Dental</span>
+                  <span class="gold">$349</span>
+                </div>
+                <div class="qc-meta"><span class="ahpra-tick">AHPRA</span>Dr Sarah Chen · 1.2 km · 4.9★</div>
+              </div>
+              <div class="quote-card">
+                <div class="qc-row">
+                  <span>Hawthorn Dental Co</span>
+                  <span>$385</span>
+                </div>
+                <div class="qc-meta">Dr Liam O'Connor · 2.7 km · 4.8★</div>
+              </div>
+              <div class="quote-card faded">
+                <div class="qc-row">
+                  <span>Boroondara Cosmetic</span>
+                  <span>$420</span>
+                </div>
+                <div class="qc-meta">Dr Priya Patel · 3.1 km · 4.9★</div>
+              </div>
+              <div class="quote-card pulse">
+                <div class="qc-row">
+                  <span class="pulse-tag">· just in</span>
+                  <span class="gold">$329</span>
+                </div>
+                <div class="qc-meta">Dr Emma Wallace</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- THREE STEPS WITH EDITORIAL ICONS                              -->
+      <!-- ============================================================ -->
+      <section class="props">
+        <h2 class="display"><em>No more</em> awkward phone calls.</h2>
+        <p class="lede tighter">
+          You shouldn't have to ring six clinics to find out what a filling
+          costs. Dentists compete, you choose.
+        </p>
+        <div class="prop-grid">
+          <div class="prop">
+            <div class="visual">
+              <div class="icon-xl-wrap">
+                <svg class="icon icon-xl" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M8 16h6l3-5h14l3 5h6v22H8z"/>
+                  <circle cx="24" cy="26" r="7"/>
+                  <circle cx="24" cy="26" r="2.5" fill="#A9CFC0" stroke="none"/>
+                  <circle cx="36" cy="20" r="0.6" fill="#A9CFC0" stroke="none"/>
+                </svg>
+              </div>
+            </div>
+            <div class="body">
+              <span class="n">STEP 01</span>
+              <h3>Capture</h3>
+              <p>
+                On-camera guides walk you through four angles — front, upper,
+                lower, problem area. Sharp photos, sharper quotes.
+              </p>
+              <div class="meta">
+                <span><strong>60 sec</strong> · guided</span>
+                <span>iOS · Android</span>
+              </div>
+            </div>
+          </div>
+          <div class="prop">
+            <div class="visual">
+              <div class="icon-xl-wrap">
+                <svg class="icon icon-xl" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M24 6c10 0 18 6 18 14 0 5-3 9-8 12l-1 7-7-5c-1 0-2 0-2 0-10 0-18-6-18-14S14 6 24 6z"/>
+                  <path d="M16 19h16M16 24h12" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="body">
+              <span class="n">STEP 02</span>
+              <h3>Quote</h3>
+              <p>
+                Personally-signed quotes from AHPRA-registered dentists
+                nearby — every quote carries the practitioner's name and
+                registration number.
+              </p>
+              <div class="meta">
+                <span><strong>AHPRA</strong> · verified</span>
+                <span>Live · in minutes</span>
+              </div>
+            </div>
+          </div>
+          <div class="prop">
+            <div class="visual">
+              <div class="icon-xl-wrap">
+                <svg class="icon icon-xl" viewBox="0 0 48 48" aria-hidden="true">
+                  <circle cx="24" cy="24" r="18"/>
+                  <path d="M15 24.5l6 6 13-15" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="body">
+              <span class="n">STEP 03</span>
+              <h3>Choose</h3>
+              <p>
+                Compare on price, distance, availability, reviews. Book the
+                consult with a fully refundable platform deposit.
+              </p>
+              <div class="meta">
+                <span><strong>Deposit</strong> · refundable</span>
+                <span>Apple Pay · Card</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="centered-link">
+          <a href="/how-it-works.html">Read the full walk-through ›</a>
+        </p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- POSITIONING                                                  -->
+      <!-- ============================================================ -->
+      <section class="positioning">
+        <div>
+          <div class="badge-row">
+            <span class="gold">Australia's #1</span>
+            <span>Live dental quoting</span>
+            <span>AHPRA-verified</span>
+          </div>
+          <h2 class="headline">
+            Australia's <em>first</em> live dental quoting app — real,
+            personally-signed quotes in minutes, wherever you are. No more
+            awkward price surprises.
+          </h2>
+        </div>
+        <div class="ribbon">
+          <p class="small">THE PROMISE</p>
+          <p>
+            No <em>"call us for a price"</em> loops. No in-clinic quote
+            reveals. Just transparent, AHPRA-verified quotes — on your
+            screen, in the time it takes to make a coffee.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <div class="big">~5 min</div>
+              <div class="label">First quote</div>
+            </div>
+            <div class="stat">
+              <div class="big">100%</div>
+              <div class="label">AHPRA-verified</div>
+            </div>
+            <div class="stat">
+              <div class="big">$0</div>
+              <div class="label">For patients</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FEATURE GALLERY — three modern phone mockups                  -->
+      <!-- ============================================================ -->
+      <section class="feature-gallery">
+        <h2 class="display"><em>Designed</em> for ease.</h2>
+        <p class="lede tighter">
+          Three taps from "where do I even start" to a booked consult.
+        </p>
+        <div class="feature-row">
+
+          <!-- GPS phone -->
+          <div class="feature-col">
+            <div class="phone phone-mini" aria-hidden="true">
+              <div class="phone-notch"></div>
+              <div class="phone-screen scr-gps">
+                <p class="gps-status">GPS · LOCKED IN</p>
+                <p class="suburb">Camberwell</p>
+                <p class="suburb-meta">VIC · ±6 m</p>
+                <div class="map-stage">
+                  <div class="grid-line grid-v1"></div>
+                  <div class="grid-line grid-v2"></div>
+                  <div class="grid-line grid-h1"></div>
+                  <div class="grid-line grid-h2"></div>
+                  <div class="radius-ring"></div>
+                  <div class="you-pin"></div>
+                  <div class="clinic-pin c1"></div>
+                  <div class="clinic-pin c2"></div>
+                  <div class="clinic-pin c3"></div>
+                  <div class="clinic-pin c4"></div>
+                  <div class="clinic-pin c5"></div>
+                </div>
+                <div class="radius-row">
+                  <span>2 km</span><span>RADIUS · 10 km</span><span>30 km</span>
+                </div>
+                <div class="slider"></div>
+                <p class="count">12</p>
+                <p class="count-label">VERIFIED DENTISTS IN RANGE</p>
+              </div>
+            </div>
+            <h3>Pinpoint location</h3>
+            <p>
+              GPS finds you. Drag a slider to set the radius. Watch the
+              count of AHPRA-registered dentists tick up live.
+            </p>
+          </div>
+
+          <!-- Photo guide phone -->
+          <div class="feature-col">
+            <div class="phone phone-mini" aria-hidden="true">
+              <div class="phone-notch"></div>
+              <div class="phone-screen scr-photo">
+                <div class="top">
+                  <span>Cancel</span>
+                  <span>Natural light</span>
+                </div>
+                <p class="step-label">PHOTO 1 OF 4</p>
+                <h4>Front smile</h4>
+                <div class="guide">
+                  <div class="crosshair ch-tl"></div>
+                  <div class="crosshair ch-tr"></div>
+                  <div class="crosshair ch-bl"></div>
+                  <div class="crosshair ch-br"></div>
+                  <div class="guide-ring-outer"></div>
+                  <div class="guide-ring-inner"></div>
+                </div>
+                <div class="progress">
+                  <div class="dot done"></div>
+                  <div class="dot active"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+                <div class="shutter-ring"><div class="shutter"></div></div>
+                <p class="footnote">FRAME WITHIN GOLD GUIDES</p>
+              </div>
+            </div>
+            <h3>Guided photo capture</h3>
+            <p>
+              On-camera guides show exactly how to frame each shot. No
+              guesswork, no blurry photos — sharper quotes.
+            </p>
+          </div>
+
+          <!-- Booking phone -->
+          <div class="feature-col">
+            <div class="phone phone-mini" aria-hidden="true">
+              <div class="phone-notch"></div>
+              <div class="phone-screen scr-book">
+                <div class="check">✓</div>
+                <p class="status">BOOKING CONFIRMED</p>
+                <h4>You're<br/>booked.</h4>
+                <div class="booking-card">
+                  <p class="clinic">Camberwell Dental</p>
+                  <p class="dentist">DR SARAH CHEN</p>
+                  <p class="slot">Thu 18 Jun<br/>3:30 PM</p>
+                </div>
+                <div class="deposit-strip">
+                  <p class="label">REFUNDABLE DEPOSIT</p>
+                  <p class="amount">$50</p>
+                  <p class="sub">RETURNED ON ATTENDANCE</p>
+                </div>
+                <div class="action-row">
+                  <div class="action">CALENDAR</div>
+                  <div class="action primary">DIRECTIONS</div>
+                </div>
+              </div>
+            </div>
+            <h3>One-tap booking</h3>
+            <p>
+              Apple Pay or Google Pay. Calendar add, directions, and message
+              clinic — all built in.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TRUST                                                         -->
+      <!-- ============================================================ -->
+      <section class="trust">
+        <h2 class="display"><em>Indicative</em> quotes, signed by a real dentist.</h2>
+        <p class="lede tighter" style="margin: 0 auto 36px;">
+          Every quote on QuoteMySmile is the work of a named AHPRA-registered
+          dentist personally reviewing your four guided photos. We call them
+          "indicative" because regulation requires it — in practice, they're
+          tight enough that most patients book and pay almost exactly what
+          they saw.
+        </p>
+        <ul>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 4l10 4v8c0 6-4 11-10 12-6-1-10-6-10-12V8z"/>
+              <path d="M11 16l4 4 6-7"/>
+            </svg>
+            <div>
+              <strong>AHPRA-verified at the source.</strong>
+              Every quoting dentist is checked against the AHPRA public
+              register before they can send a quote. Suspended or restricted
+              practitioners are silently dropped.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 22h24"/>
+              <path d="M7 22V10l5-4 4 3 4-3 5 4v12"/>
+              <path d="M14 22v-6h4v6"/>
+            </svg>
+            <div>
+              <strong>Named, personally-signed quotes.</strong>
+              The dentist's full name, AHPRA number, and clinic are on every
+              quote card. They acknowledge responsibility for the figure at
+              the moment they send it. The record is timestamped and audited.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 12a12 12 0 0124 0v8a4 4 0 01-4 4h-2v-12h6"/>
+              <path d="M4 12v8a4 4 0 004 4h2V12H4"/>
+            </svg>
+            <div>
+              <strong>One revision per dentist.</strong>
+              Clean competition, no death-spirals. The dentist's first quote
+              is their best foot forward.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="6" y="14" width="20" height="14" rx="2"/>
+              <path d="M11 14V9a5 5 0 0110 0v5"/>
+              <circle cx="16" cy="21" r="1.5" fill="#A9CFC0" stroke="none"/>
+            </svg>
+            <div>
+              <strong>Deposits held by us, returned in full.</strong>
+              Refundable platform security deposit, Airbnb-style. Held by
+              QuoteMySmile, never the clinic, and fully returned to your card
+              within 5 business days of your visit.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="16" cy="16" r="12"/>
+              <path d="M16 9v8l5 3"/>
+              <path d="M22 8l4-4M10 8L6 4"/>
+            </svg>
+            <div>
+              <strong>Photos &amp; location deleted after 30 days.</strong>
+              Never tracked in the background. Never sold. Auto-purged 30
+              days after each request closes.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="16" cy="16" r="12"/>
+              <path d="M8 8l16 16"/>
+            </svg>
+            <div>
+              <strong>No fee-splitting with dentists.</strong>
+              AHPRA-compliant by design. Your treatment fee flows directly
+              from you to your dentist — we never take a cut of it.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FREE BANNER                                                   -->
+      <!-- ============================================================ -->
+      <section class="free-banner">
+        <div>
+          <p class="kicker">PRICING · TRANSPARENT</p>
+          <h2 class="display"><em>Free</em> for patients.</h2>
+          <p class="lede tighter">
+            QuoteMySmile is
+            <em style="font-family:'Allura',cursive;color:#2F6F66;font-size:1.3em;font-style:normal;">free</em>
+            to use. No subscription, no quote fees, nothing deducted from
+            your refundable booking deposit. Final treatment fees are paid
+            directly to your dentist at the clinic.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FAQ                                                           -->
+      <!-- ============================================================ -->
+      <section id="faq" class="faq">
+        <h2 class="display"><em>Real</em> questions.</h2>
+        <details>
+          <summary>How accurate are the quotes really?</summary>
+          <p>
+            Each quote is the work of a real, named, AHPRA-registered dentist
+            personally reviewing your four guided photos. They commit their
+            name and registration number to it. "Indicative" is the legal
+            label — in practice the final fee at the chair-side is usually
+            within a few percent of the quote. Clearer photos = tighter
+            quotes.
+          </p>
+        </details>
+        <details>
+          <summary>What does it cost me?</summary>
+          <p>
+            Nothing. Free to use. Booking a consult places a refundable
+            platform deposit ($50–$100) on your card, which is returned in
+            full when you attend.
+          </p>
+        </details>
+        <details>
+          <summary>What if I cancel or no-show?</summary>
+          <p>
+            Cancel 24h+ before the slot → <strong>full refund</strong>.
+            Cancel inside the window or no-show → deposit forfeited. The
+            deposit exists so dentists' time isn't wasted by no-shows.
+          </p>
+        </details>
+        <details>
+          <summary>Which areas are you live in?</summary>
+          <p>
+            Built for all of Australia, launching in Melbourne first —
+            Camberwell, Hawthorn, Glen Iris, Surrey Hills. Other metros
+            follow as dentists join.
+          </p>
+        </details>
+        <details>
+          <summary>What if my dentist isn't on the platform?</summary>
+          <p>
+            Forward them to <a href="/for-dentists.html">/for-dentists</a> —
+            free for them to join, in minutes.
+          </p>
+        </details>
+        <details>
+          <summary>What happens to my photos?</summary>
+          <p>
+            Stored privately, visible only to dentists matched by AHPRA
+            registration + geofence. Auto-deleted 30 days after the request
+            closes. See <a href="/privacy.html">privacy</a>.
+          </p>
+        </details>
+        <details>
+          <summary>Is this a medical service?</summary>
+          <p>
+            No. QuoteMySmile is an introduction marketplace. Every clinical
+            decision and final fee stays between you and your chosen dentist.
+          </p>
+        </details>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- DOWNLOAD                                                      -->
+      <!-- ============================================================ -->
+      <section id="download" class="cta">
+        <p class="kicker">DOWNLOAD · IOS &amp; ANDROID</p>
+        <h2 class="display">Get the <em>app.</em></h2>
+        <p class="lede tighter">
+          Scan with your phone. Free download. Free to use.
+        </p>
+        <div class="qr-wrap">
+          <div class="qr-card">
+            <img src="/qr-app.svg" alt="Scan to download QuoteMySmile" width="200" height="200" />
+            <p>Point your camera at the code.</p>
+          </div>
+        </div>
+        <div class="badges centered-row">
+          <a class="badge" href="/app.html">App Store</a>
+          <a class="badge" href="/app.html">Google Play</a>
+        </div>
+        <p class="microcopy">
+          For dentists, head to <a href="/for-dentists.html">/for-dentists</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-top">
+        <span class="wordmark sm">QUOTE<em>my</em>SMILE</span>
+        <nav>
+          <a href="/how-it-works.html">How it works</a>
+          <a href="/for-dentists.html">For dentists</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/support.html">Support</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 QuoteMySmile Pty Ltd · ABN pending · Made in Melbourne</p>
+        <p>
+          Health information is not medical advice. Indicative quotes are
+          confirmed at your clinical exam.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

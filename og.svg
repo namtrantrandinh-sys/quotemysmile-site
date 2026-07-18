@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Italiana&amp;family=Allura&amp;display=swap');
+      .bg { fill: #F5F1E8; }
+      .cap { font-family: 'Italiana', serif; font-size: 96px; letter-spacing: 8px;
+             fill: #2A2520; text-anchor: middle; text-transform: uppercase; }
+      .script { font-family: 'Allura', cursive; font-size: 180px; fill: #A9CFC0;
+                text-anchor: middle; }
+      .kicker { font-family: 'Italiana', serif; font-size: 22px;
+                letter-spacing: 8px; fill: #8A7E6F; text-anchor: middle; }
+      .rule { stroke: #A9CFC0; stroke-width: 2; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1200" height="630"/>
+
+  <text class="kicker" x="600" y="120">EST. 2026 · AU</text>
+  <line class="rule" x1="540" y1="140" x2="660" y2="140"/>
+
+  <text class="cap" x="600" y="270">QUOTE</text>
+  <g transform="translate(600 380) rotate(-6)">
+    <text class="script" x="0" y="0">my</text>
+  </g>
+  <text class="cap" x="600" y="490">SMILE</text>
+
+  <line class="rule" x1="500" y1="540" x2="700" y2="540"/>
+  <text class="kicker" x="600" y="580">YOUR DREAM SMILE · IN YOUR HAND</text>
+</svg>

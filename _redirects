@@ -1,0 +1,10 @@
+# Cloudflare Pages / Netlify-compatible redirects
+# Clean URLs for the marketing site — no .html in the address bar.
+/how-it-works   /how-it-works.html   200
+/for-dentists   /for-dentists.html   200
+/privacy        /privacy.html        200
+/terms          /terms.html          200
+/support        /support.html        200
+
+# 404 fallback
+/*              /404.html            404

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get the QuoteMySmile app</title>
+    <meta name="description" content="Download QuoteMySmile from the App Store or Google Play." />
+    <link rel="canonical" href="https://quotemysmile.com.au/app.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QuoteMySmile" />
+    <meta property="og:url" content="https://quotemysmile.com.au/app.html" />
+    <meta property="og:title" content="Get the QuoteMySmile app" />
+    <meta property="og:image" content="https://quotemysmile.com.au/og.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./style.css?v=2026-06-15-v7" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Allura&family=Inter:wght@300;400;500;600&display=swap"
+    />
+    <!--
+      Smart redirect. UA-detects iOS / Android and forwards to the store.
+      Falls back to the rendered page below for desktops + reviewers.
+      Update the two REPLACE_ URLs once you have the live store listings.
+    -->
+    <script>
+      (function () {
+        var APPSTORE_URL = "https://apps.apple.com/au/app/REPLACE_WITH_APP_ID";
+        var PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=com.quotemysmile.app";
+        var ua = navigator.userAgent || "";
+        if (/android/i.test(ua)) {
+          window.location.replace(PLAYSTORE_URL);
+        } else if (/iphone|ipad|ipod/i.test(ua)) {
+          window.location.replace(APPSTORE_URL);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/">QUOTE<em>my</em>SMILE</a>
+      <nav>
+        <a href="/how-it-works.html">How it works</a>
+        <a href="/for-dentists.html">For dentists</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+    </header>
+    <main>
+      <section class="cta" style="padding: 96px 0 60px;">
+        <p class="kicker">DOWNLOAD · IOS &amp; ANDROID</p>
+        <h1 class="display">Get the <em>app.</em></h1>
+        <p class="lede tighter">
+          On a phone? You'll be redirected to your store automatically. On a
+          laptop? Scan the QR with your phone.
+        </p>
+        <div style="display:flex;justify-content:center;margin:32px 0 12px;">
+          <div style="background:#FAF6EC;border:1px solid #E8E0CD;padding:18px;">
+            <img src="/qr-app.svg" alt="Scan to download QuoteMySmile" width="220" height="220" />
+          </div>
+        </div>
+        <div class="badges" style="justify-content:center;">
+          <a class="badge" href="https://apps.apple.com/au/app/REPLACE_WITH_APP_ID">App Store</a>
+          <a class="badge" href="https://play.google.com/store/apps/details?id=com.quotemysmile.app">Google Play</a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-top">
+        <span class="wordmark sm">QUOTE<em>my</em>SMILE</span>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
