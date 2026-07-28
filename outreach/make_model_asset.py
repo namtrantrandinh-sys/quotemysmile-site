@@ -70,6 +70,61 @@ def close_mask(mask: Image.Image, radius: int) -> Image.Image:
     return mask.filter(ImageFilter.MaxFilter(size)).filter(ImageFilter.MinFilter(size))
 
 
+def key_chroma(path: str, max_side=(1100, 1650), hue_tol=26, sat_min=0.34,
+               val_min=0.55, close=0, erode=0):
+    """Key a VIVID coloured backdrop on hue + saturation instead of RGB distance.
+
+    A saturated seamless (orange, teal, yellow) is almost always lit unevenly —
+    bright behind the subject, falling off at the edges. Euclidean distance from
+    one sampled colour cannot cover that gradient: set the band wide enough to
+    catch the dark corners and it eats skin, narrow enough to spare skin and the
+    bright centre survives as a coloured halo.
+
+    Hue and saturation are both stable across that falloff. The backdrop stays
+    the same hue and stays vivid; skin, hair and neutral clothing are far less
+    saturated whatever their brightness. So: background = same hue AND vivid.
+    """
+    im = Image.open(path).convert("RGB")
+    im.thumbnail(max_side, Image.LANCZOS)
+    w, h = im.size
+    hsv = im.convert("HSV")
+    hp = hsv.load()
+
+    corner = [hp[x, y] for x in range(2, 16) for y in range(2, 16)]
+    bg_h = sum(c[0] for c in corner) // len(corner)
+    print(f"chroma key: backdrop hue={bg_h} (0-255 scale), tol={hue_tol}, sat_min={sat_min}")
+
+    smin, vmin = int(sat_min * 255), int(val_min * 255)
+    alpha = []
+    for y in range(h):
+        for x in range(w):
+            hh, ss, vv = hp[x, y]
+            dh = min(abs(hh - bg_h), 255 - abs(hh - bg_h))
+            # Brightness matters as well as hue: warm brown HAIR shares an orange
+            # backdrop's hue and is saturated enough to pass a hue+sat test, so
+            # it gets eaten. The seamless is lit bright and the hair is dark, so
+            # requiring brightness too keeps the hair.
+            alpha.append(0 if (dh <= hue_tol and ss >= smin and vv >= vmin) else 255)
+
+    mask = Image.new("L", (w, h))
+    mask.putdata(alpha)
+    mask = mask.filter(ImageFilter.GaussianBlur(1.0))
+    mask = mask.point(lambda v: 0 if v < 128 else 255)
+    mask = fill_holes(mask, w, h)
+    if close:
+        mask = close_mask(mask, close)
+        mask = fill_holes(mask, w, h)
+    if erode:
+        mask = mask.filter(ImageFilter.MinFilter(erode * 2 + 1))
+        mask = mask.filter(ImageFilter.GaussianBlur(0.6))
+    mask = keep_largest_blob(mask, w, h)
+
+    fig = im.convert("RGBA")
+    fig.putalpha(mask)
+    box = mask.getbbox()
+    return fig.crop(box) if box else fig
+
+
 def key_figure(path: str, max_side=(1100, 1650), near=None, far=None, close=0, erode=0):
     im = Image.open(path).convert("RGB")
     im.thumbnail(max_side, Image.LANCZOS)
@@ -217,9 +272,17 @@ def main():
     ap.add_argument("--far", type=float, help="above this RGB distance = subject")
     ap.add_argument("--close", type=int, default=0, help="morphological close radius, seals matte breakthroughs")
     ap.add_argument("--erode", type=int, default=0, help="trim N px off the silhouette, removes leftover backdrop fringe")
+    ap.add_argument("--chroma", action="store_true", help="key a VIVID coloured backdrop on hue+sat+value instead of RGB distance")
+    ap.add_argument("--hue-tol", type=int, default=24)
+    ap.add_argument("--sat-min", type=float, default=0.34)
+    ap.add_argument("--val-min", type=float, default=0.62)
     a = ap.parse_args()
 
-    fig = key_figure(a.source, near=a.near, far=a.far, close=a.close, erode=a.erode)
+    if a.chroma:
+        fig = key_chroma(a.source, hue_tol=a.hue_tol, sat_min=a.sat_min,
+                         val_min=a.val_min, close=a.close, erode=a.erode)
+    else:
+        fig = key_figure(a.source, near=a.near, far=a.far, close=a.close, erode=a.erode)
     print("figure:", fig.size)
 
     card = mint_card(fig, fill=a.fill)

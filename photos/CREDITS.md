@@ -5,11 +5,12 @@ not be on the site.
 
 ## Homepage model — `model-cutout.webp`, `model-portrait.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/confident-woman-posing-in-casual-attire-29047215/
+- **Source:** Pexels — https://www.pexels.com/photo/smiling-woman-with-braces-on-orange-background-35537895/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
-- **Processing:** background keyed out and the figure composited on brand mint
-  by `outreach/make_hero_model.py`. Re-run that script to regenerate both files.
+- **Processing:** keyed with `outreach/make_model_asset.py --chroma` (her orange
+  seamless is vivid and unevenly lit, so it keys on hue+saturation+brightness
+  rather than colour distance) and composited on brand mint.
 
 **Usage limits — read before repurposing.** The Pexels Licence permits commercial
 use, but Pexels does **not** guarantee a model release. That means:
