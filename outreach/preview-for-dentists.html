@@ -198,12 +198,60 @@ html {
   --walnut: #4d423a;
   --espresso: #2a2520;
   --gold: #a9cfc0;
+  --mint: #a9cfc0; /* real name for --gold; --gold kept so nothing breaks */
   /* Brand teal used for any TEXT on cream — readable contrast. */
   --teal: #2f6f66;
   --teal-dark: #1f4f47;
   --clay: #9e5e47;
   --forest: #4a6b4f;
   --bone-shadow: 0 1px 2px rgba(42, 37, 32, 0.05);
+
+  /* Paper-stock depth language: a hairline and a barely-lighter fill do the
+     work that drop shadows used to. */
+  --card: #fbf8f1;
+  --card: color-mix(in oklab, var(--eggshell) 92%, white);
+  --hair: #e8e0cd;
+  --hair: color-mix(in oklab, var(--linen) 78%, transparent);
+  --hair-strong: #cbc0a6;
+  --hair-strong: color-mix(in oklab, var(--linen) 60%, var(--walnut));
+  --paper-card: inset 0 1px 0 rgb(255 255 255 / 0.7), 0 1px 2px rgb(42 37 32 / 0.04);
+
+  /* Fluid modular scale (Utopia two-ratio, 360px -> 1280px). One scale drives
+     type AND spacing so the vertical rhythm never drifts between breakpoints. */
+  --step--1: clamp(0.8333rem, 0.8072rem + 0.1159vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+  --step-1:  clamp(1.2rem, 1.1193rem + 0.3587vw, 1.4063rem);
+  --step-2:  clamp(1.44rem, 1.3156rem + 0.5527vw, 1.7578rem);
+  --step-3:  clamp(1.728rem, 1.5444rem + 0.8162vw, 2.1973rem);
+  --step-4:  clamp(2.0736rem, 1.8103rem + 1.1704vw, 2.7466rem);
+  --step-5:  clamp(2.4883rem, 2.1185rem + 1.6434vw, 3.4332rem);
+  --step-6:  clamp(2.986rem, 2.4752rem + 2.2704vw, 4.2915rem);
+
+  --space-2xs: clamp(0.5rem, 0.4756rem + 0.1087vw, 0.5625rem);
+  --space-xs:  clamp(0.75rem, 0.7133rem + 0.163vw, 0.8438rem);
+  --space-s:   clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+  --space-m:   clamp(1.5rem, 1.4267rem + 0.3261vw, 1.6875rem);
+  --space-l:   clamp(2rem, 1.9022rem + 0.4348vw, 2.25rem);
+  --space-xl:  clamp(3rem, 2.8533rem + 0.6522vw, 3.375rem);
+  --space-2xl: clamp(4rem, 3.8043rem + 0.8696vw, 4.5rem);
+}
+
+/* Paper grain. Fixed tile, multiply-blended, never animated — it is texture,
+   not motion. Dropped entirely for high-contrast / reduced-transparency users. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+@media (max-width: 47.99rem) { body::after { opacity: 0.025; } }
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  body::after { display: none; }
 }
 * { box-sizing: border-box; }
 html, body {
@@ -337,20 +385,27 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
 .display {
   font-family: "Inter", -apple-system, sans-serif;
   font-weight: 200;
-  font-size: clamp(40px, 5.8vw, 72px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  margin: 0 0 28px;
+  font-size: var(--step-5);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  margin: 0 0 var(--space-m);
   color: var(--espresso);
+  text-wrap: balance;
+  font-optical-sizing: auto;
 }
+/* line-height:0 stops the swash ascenders opening the leading; the translate
+   re-seats Allura's baseline against Inter. */
 .display em {
   font-family: "Allura", cursive;
   font-style: normal;
   color: #2F6F66;
-  font-size: 1.4em;
-  letter-spacing: 0;
-  line-height: 1;
+  font-size: 1.34em;
+  letter-spacing: 0.01em;
+  line-height: 0;
   font-weight: 400;
+  display: inline-block;
+  padding-inline: 0.08em;
+  transform: translateY(0.055em);
 }
 .lede {
   font-size: 19px;
@@ -604,13 +659,53 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
   margin: 0 0 24px;
 }
 .quote-card {
-  background: var(--eggshell);
-  border: 1px solid var(--linen);
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  border-radius: 2px;
+  background: var(--card, var(--eggshell));
+  border: 1px solid var(--hair, var(--linen));
+  padding: 11px 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  box-shadow: var(--paper-card);
 }
-.quote-card.faded { opacity: 0.7; }
+.quote-card.faded { opacity: 0.72; }
+/* Practice avatar — initials chip, so a card reads as a real clinic listing */
+.qc-head { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
+.qc-ava {
+  flex: 0 0 auto;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(160deg, #d9ede5, var(--mint, #a9cfc0));
+  color: var(--teal-dark);
+  font: 600 10.5px/1 "Inter", sans-serif;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+.qc-name {
+  flex: 1 1 auto; min-width: 0;
+  font: 600 12px/1.25 "Inter", sans-serif;
+  color: var(--espresso);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.qc-name span {
+  display: block;
+  font: 400 10px/1.3 "Inter", sans-serif;
+  color: var(--taupe);
+  letter-spacing: 0.01em;
+}
+.qc-amt {
+  flex: 0 0 auto;
+  font: 400 20px/1 "Cormorant Garamond", Georgia, serif;
+  color: var(--teal-dark);
+  letter-spacing: 0.01em;
+}
+.quote-card.best { border-color: var(--mint, #a9cfc0); background: rgba(169, 207, 192, 0.13); }
+.qc-flag {
+  display: inline-block;
+  font: 600 8px/1 "Inter", sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal-dark);
+  background: rgba(169, 207, 192, 0.55);
+  padding: 3px 6px; border-radius: 999px;
+}
 .quote-card.pulse {
   border-color: var(--gold);
   background: rgba(169, 207, 192, 0.08);
@@ -1135,8 +1230,10 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
   flex-shrink: 0;
   opacity: 0.95;
 }
-.icon-lg { width: 44px; height: 44px; stroke-width: 0.85; }
-.icon-xl { width: 56px; height: 56px; stroke-width: 0.75; }
+.icon-lg { width: 44px; height: 44px; stroke-width: 1.15; }
+.icon-xl { width: 56px; height: 56px; stroke-width: 1; }
+/* One consistent drawn-line language across every icon on the site. */
+.icon { stroke-linecap: round; stroke-linejoin: round; }
 
 /* XL icon for the 3 steps gets an enclosing thin circle to feel like a
    numismatic medal — sets the editorial tone */
@@ -1742,7 +1839,8 @@ footer {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 6%;
+  /* Crosses the portrait around chest height, as in the reference layout. */
+  bottom: 14%;
   margin: 0;
   text-align: center;
   white-space: nowrap;
@@ -1767,6 +1865,20 @@ footer {
   margin: 0 0.02em;
 }
 
+/* The outline pass. Identical geometry to .hs-word but stroke-only and above
+   the portrait, so letters crossing her body read as glass rather than
+   disappearing. If text-stroke is unsupported the layer is simply invisible
+   and the solid wordmark behind still carries the composition. */
+.hs-word-outline {
+  z-index: 3;
+  color: transparent;
+  -webkit-text-stroke: 1.4px rgba(255, 255, 255, 0.62);
+  text-stroke: 1.4px rgba(255, 255, 255, 0.62);
+  text-shadow: none;
+}
+.hs-word-outline em { color: transparent; }
+@media (max-width: 720px) { .hs-word-outline { -webkit-text-stroke-width: 1px; } }
+
 /* Cut-out practitioner photo — needs a transparent PNG to layer correctly */
 .hs-person {
   position: relative;
@@ -1779,12 +1891,16 @@ footer {
 }
 .hs-person img {
   display: block;
-  height: clamp(280px, 46vw, 520px);
+  height: clamp(300px, 46vw, 560px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  filter: drop-shadow(0 26px 50px rgba(31, 79, 71, 0.26));
+  /* Grounds the cut-out on the mint field so it doesn't look pasted on. */
+  filter: drop-shadow(0 28px 40px rgba(24, 62, 55, 0.24));
+  /* Runs past the stage so the panel below crops her, as in the reference —
+     the torso crop in the source plate never shows as a hard edge. */
+  margin-bottom: -34px;
 }
 /* No photo supplied yet → hide the slot and tighten the stage so the
    typographic hero still reads as intentional rather than half-empty. */
@@ -1794,12 +1910,13 @@ footer {
 @media (max-width: 900px) { .hs-stage:has(.hs-person.is-empty) { min-height: 300px; } }
 
 /* Lower panel — headline + stats, like the reference's second band */
+/* Opaque, not translucent: the portrait runs under this band and a see-through
+   panel showed her torso as a blurred smear. */
 .hs-panel {
   position: relative;
   z-index: 4;
-  background: rgba(255, 255, 255, 0.16);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: saturate(150%) blur(6px);
+  background: #a7cdbc;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
 }
 .hs-panel-in {
   max-width: 1180px;
@@ -1897,17 +2014,13 @@ footer {
   color: var(--teal-dark);
   font-weight: 500;
 }
+/* Static, not pulsing: a throbbing dot reads as a live-activity indicator and
+   there is no live activity feed behind it. */
 .fomo-chip .dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: #3f9c86;
-  box-shadow: 0 0 0 4px rgba(63, 156, 134, 0.18);
-  animation: fomoPulse 2.2s ease-in-out infinite;
+  background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(63, 156, 134, 0.16);
 }
-@keyframes fomoPulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(63, 156, 134, 0.16); }
-  50%      { box-shadow: 0 0 0 7px rgba(63, 156, 134, 0.05); }
-}
-@media (prefers-reduced-motion: reduce) { .fomo-chip .dot { animation: none; } }
 
 /* Photo panel with floating proof cards */
 .sh-photo { position: relative; }
@@ -2168,7 +2281,9 @@ footer {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(169, 207, 192, 0.25);
 }
-.signup-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+/* Global, not scoped to .signup-form — the compact .waitlist-form carries a
+   honeypot too and was rendering it as a visible empty input. */
+.hp { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden; opacity: 0; }
 .signup-form button[type="submit"] {
   margin-top: 4px;
   width: 100%;
@@ -2419,10 +2534,6 @@ footer {
           Founding spots per area are limited, and once your area fills, new
           practices wait behind the ones already in.
         </p>
-        <div class="meter" aria-hidden="true">
-          <div class="track"><div class="fill" style="width:72%"></div></div>
-          <div class="legend"><span>Melbourne inner-east</span><span>Filling fast</span></div>
-        </div>
         <span class="pill">Founding practices · limited spots per area</span>
       </section>
 
@@ -2455,9 +2566,8 @@ footer {
         <ul class="bullets-2col">
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <circle cx="16" cy="16" r="12"/>
-              <circle cx="16" cy="16" r="7"/>
-              <circle cx="16" cy="16" r="2.5" fill="#A9CFC0" stroke="none"/>
+              <path d="M16 28s9-7.2 9-13.6A9 9 0 0 0 7 14.4C7 20.8 16 28 16 28z"/>
+              <circle cx="16" cy="14" r="3.2"/>
             </svg>
             <div>
               <strong>Live, geofenced requests.</strong>
@@ -2467,8 +2577,7 @@ footer {
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M16 4l10 4v8c0 6-4 11-10 12-6-1-10-6-10-12V8z"/>
-              <path d="M11 16l4 4 6-7"/>
+              <path d="M16 27c-3 0-3.4-9-6.6-11.4A6.2 6.2 0 0 1 7 10.3C7 6.8 9.7 4.6 13 5.4c1.9.5 2.4 1.1 3 1.1s1.1-.6 3-1.1c3.3-.8 6 1.4 6 4.9a6.2 6.2 0 0 1-2.4 5.3C19.4 18 19 27 16 27z"/>
             </svg>
             <div>
               <strong>Real patients, not cold leads.</strong>
@@ -2478,8 +2587,8 @@ footer {
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M4 12a12 12 0 0124 0v8a4 4 0 01-4 4h-2v-12h6"/>
-              <path d="M4 12v8a4 4 0 004 4h2V12H4"/>
+              <path d="M6 13V9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-8l-5 4v-4"/>
+              <path d="M12 11.5h9M12 15.5h5"/>
             </svg>
             <div>
               <strong>One revision per quote.</strong>
@@ -2489,8 +2598,8 @@ footer {
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M16 4l10 4v8c0 6-4 11-10 12-6-1-10-6-10-12V8z"/>
-              <path d="M11 16l4 4 6-7"/>
+              <path d="M16 4l10 3.6v7.6c0 5.8-4 10.6-10 11.8-6-1.2-10-6-10-11.8V7.6z"/>
+              <path d="M11.6 16.2l3.2 3.2 5.6-6.4"/>
             </svg>
             <div>
               <strong>AHPRA shield baked in.</strong>
@@ -2500,8 +2609,8 @@ footer {
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <rect x="8" y="6" width="4" height="20" rx="1"/>
-              <rect x="20" y="6" width="4" height="20" rx="1"/>
+              <rect x="5" y="11" width="22" height="10" rx="5"/>
+              <circle cx="11" cy="16" r="3.2"/>
             </svg>
             <div>
               <strong>Self-pause anytime.</strong>
@@ -2511,8 +2620,8 @@ footer {
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <circle cx="16" cy="16" r="12"/>
-              <path d="M8 8l16 16"/>
+              <path d="M16 5v22"/>
+              <path d="M21 9.5h-7.2a3.8 3.8 0 0 0 0 7.6h4.4a3.8 3.8 0 0 1 0 7.6H10"/>
             </svg>
             <div>
               <strong>No fee-splitting.</strong>
@@ -2609,10 +2718,6 @@ footer {
           Takes 2 minutes. We verify your AHPRA registration and invite you the
           moment we open to patients near you. No cost, no card, no commitment.
         </p>
-        <div class="meter on-cream" style="margin-bottom:30px;" aria-hidden="true">
-          <div class="track"><div class="fill" style="width:72%"></div></div>
-          <div class="legend"><span>Founding spots claimed</span><span>Limited per area</span></div>
-        </div>
         <div class="signup-card">
           <form data-qms-form="dentist" novalidate>
             <div class="signup-form">
