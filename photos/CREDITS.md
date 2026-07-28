@@ -5,7 +5,7 @@ not be on the site.
 
 ## Homepage model — `model-cutout.webp`, `model-portrait.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/photo-of-woman-wearing-red-top-3760737/
+- **Source:** Pexels — https://www.pexels.com/photo/portrait-of-a-woman-on-a-black-background-16586566/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
 - **Processing:** keyed with `outreach/make_model_asset.py --chroma` (her orange
