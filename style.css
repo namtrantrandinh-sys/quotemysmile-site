@@ -1472,3 +1472,348 @@ footer {
   line-height: 1;
   margin: 24px 0 12px;
 }
+
+/* ============================================================ */
+/* Showcase hero — giant wordmark behind a cut-out practitioner  */
+/* ============================================================ */
+.hero-showcase {
+  /* Break out of main's 40px padding for an edge-to-edge band. */
+  margin: 0 -40px 0;
+  background:
+    radial-gradient(120% 90% at 80% 0%, rgba(255, 255, 255, 0.28), transparent 62%),
+    linear-gradient(168deg, #b6dbcb 0%, #9ecdba 44%, #86bfaa 100%);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 720px) { .hero-showcase { margin: 0 -22px; } }
+
+.hs-stage {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 40px 0;
+  min-height: 540px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+@media (max-width: 900px) { .hs-stage { min-height: 420px; padding: 26px 22px 0; } }
+@media (max-width: 560px) { .hs-stage { min-height: 320px; } }
+
+/* Top-left meta, mirrors the reference's project note */
+.hs-meta {
+  position: absolute;
+  top: 34px;
+  left: 40px;
+  max-width: 260px;
+  z-index: 3;
+}
+@media (max-width: 900px) { .hs-meta { left: 22px; top: 26px; max-width: 200px; } }
+@media (max-width: 560px) { .hs-meta .hs-note { display: none; } }
+/* Deep teal, not white — the mint field is too light for white body text. */
+.hs-kicker {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1c4a42;
+  margin: 0 0 10px;
+}
+.hs-note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #234f47;
+  margin: 0;
+}
+
+/* Top-right lockup */
+.hs-logo {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 900px) { .hs-logo { right: 22px; top: 26px; } }
+@media (max-width: 560px) { .hs-logo .hs-logo-text { display: none; } }
+.hs-logo img { width: 34px; height: 34px; border-radius: 9px; }
+.hs-logo-text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1c4a42;
+  line-height: 1.2;
+}
+.hs-logo-text span {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: none;
+  color: #2f5f56;
+}
+
+/* The giant wordmark — sits BEHIND the practitioner */
+.hs-word {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: clamp(38px, 11vw, 148px);
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  color: rgba(255, 255, 255, 0.62);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.hs-word em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.92em;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0.02em;
+}
+
+/* Cut-out practitioner photo — needs a transparent PNG to layer correctly */
+.hs-person {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+}
+.hs-person img {
+  display: block;
+  height: clamp(280px, 46vw, 520px);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 26px 50px rgba(31, 79, 71, 0.26));
+}
+/* No photo supplied yet → hide the slot and tighten the stage so the
+   typographic hero still reads as intentional rather than half-empty. */
+.hs-person.is-empty img { display: none; }
+.hs-person.is-empty { min-height: clamp(120px, 20vw, 220px); }
+.hs-stage:has(.hs-person.is-empty) { min-height: 360px; }
+@media (max-width: 900px) { .hs-stage:has(.hs-person.is-empty) { min-height: 300px; } }
+
+/* Lower panel — headline + stats, like the reference's second band */
+.hs-panel {
+  position: relative;
+  z-index: 4;
+  background: rgba(255, 255, 255, 0.16);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: saturate(150%) blur(6px);
+}
+.hs-panel-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 44px 40px 48px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .hs-panel-in { grid-template-columns: 1fr; gap: 32px; padding: 34px 22px 38px; }
+}
+.hs-copy h1 {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 200;
+  font-size: clamp(30px, 4.4vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #14342e;
+  margin: 0 0 18px;
+}
+.hs-copy h1 em {
+  font-family: "Allura", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.32em;
+  line-height: 1;
+  color: var(--teal-dark);
+}
+.hs-copy p {
+  font-size: 17px;
+  line-height: 1.62;
+  color: #2f4a44;
+  max-width: 52ch;
+  margin: 0 0 24px;
+}
+.hs-copy .microcopy { color: #33544d; }
+.hs-copy .waitlist-form { margin-top: 0; }
+.hs-copy .waitlist-form input[type="email"] {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+.hs-copy .waitlist-form button { background: var(--teal-dark); }
+.hs-copy .waitlist-form button:hover { background: #143a33; }
+
+.hs-stats { display: grid; gap: 22px; }
+@media (max-width: 900px) { .hs-stats { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+@media (max-width: 480px) { .hs-stats { grid-template-columns: 1fr; } }
+.hs-stat .big {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1;
+  color: var(--teal-dark);
+  margin-bottom: 4px;
+}
+.hs-stat .label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3d5b54;
+  line-height: 1.5;
+}
+
+/* ============================================================ */
+/* Founding band + signup forms (waitlist / reservation)         */
+/* ============================================================ */
+
+/* Founding / FOMO band — teal gradient, mirrors the outreach email. */
+.founding {
+  padding: 84px 6vw;
+  margin: 0;
+  text-align: center;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,0.10), transparent 60%),
+    linear-gradient(135deg, #1f4f47 0%, #2f6f66 45%, #4a8c82 100%);
+  color: #eaf5f0;
+}
+.founding .kicker { color: var(--gold); }
+.founding h2 {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 200;
+  font-size: clamp(28px, 4.4vw, 46px);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 8px auto 16px;
+  max-width: 20ch;
+}
+.founding h2 .count {
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 22px rgba(169, 207, 192, 0.75);
+}
+.founding p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 48ch;
+  margin: 0 auto;
+}
+.founding .pill {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(169, 207, 192, 0.18);
+  border: 1px solid rgba(169, 207, 192, 0.5);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #eaf5f0;
+}
+
+/* Signup section (reserve / join) */
+.signup { padding: 88px 0 40px; text-align: center; }
+.signup .display { margin: 0 0 14px; }
+.signup .lede { margin: 0 auto 32px; }
+.signup-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--eggshell);
+  border: 1px solid var(--linen);
+  padding: 34px 34px 30px;
+  text-align: left;
+}
+@media (max-width: 560px) { .signup-card { padding: 26px 20px 24px; } }
+
+.signup-form { display: grid; gap: 16px; }
+.signup-form .field { display: grid; gap: 6px; }
+.signup-form .field.row2 { grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 480px) { .signup-form .field.row2 { grid-template-columns: 1fr; } }
+.signup-form label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.signup-form label .opt { text-transform: none; letter-spacing: 0; opacity: 0.7; }
+.signup-form input,
+.signup-form select,
+.signup-form textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--linen);
+  background: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--espresso);
+  border-radius: 0;
+}
+.signup-form textarea { resize: vertical; min-height: 78px; }
+.signup-form input:focus,
+.signup-form select:focus,
+.signup-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(169, 207, 192, 0.25);
+}
+.signup-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.signup-form button[type="submit"] {
+  margin-top: 4px;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--espresso);
+  color: var(--bone);
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.signup-form button[type="submit"]:hover { background: #1f1a16; }
+.signup-form button[type="submit"][disabled] { opacity: 0.6; cursor: default; }
+.form-note { font-size: 12px; color: var(--taupe); margin: 14px 2px 0; line-height: 1.6; }
+.form-status { margin: 10px 2px 0; font-size: 14px; line-height: 1.6; min-height: 1px; }
+.form-status.ok { color: var(--teal-dark); }
+.form-status.err { color: var(--clay); }
+
+/* Success state replaces the form */
+.signup-done { text-align: center; padding: 8px 0; }
+.signup-done .tick {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--teal); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 26px; margin: 0 auto 16px;
+}
+.signup-done h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500; font-size: 26px; color: var(--espresso); margin: 0 0 8px;
+}
+.signup-done p { font-size: 15px; color: var(--walnut); margin: 0 auto; max-width: 40ch; }
+
+@media (max-width: 560px) {
+  .waitlist-form { flex-direction: column; }
+  .waitlist-form button { width: 100%; }
+}

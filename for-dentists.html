@@ -3,27 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>QuoteMySmile for dentists — Live quote marketplace</title>
+    <title>QuoteMySmile for dentists — Reserve your founding-practice spot</title>
     <meta
       name="description"
-      content="Join the QuoteMySmile dentist marketplace. AHPRA-verified. Free to join. A$5 per attended booking — no monthly fee, no fee-splitting."
+      content="Reserve a founding-practice spot on QuoteMySmile before we open to patients in your area. AHPRA-verified. Free to join. A$5 per attended booking — no lead fees, no fee-splitting."
     />
     <link rel="canonical" href="https://quotemysmile.com.au/for-dentists.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="QuoteMySmile" />
-    <meta property="og:title" content="QuoteMySmile for dentists" />
-    <meta property="og:description" content="Indicative quoting marketplace for AHPRA-registered Australian dentists. Free signup. A$5 per attended booking." />
+    <meta property="og:title" content="QuoteMySmile for dentists — Reserve your founding spot" />
+    <meta property="og:description" content="Founding practices get in first. Reserve your area before we open to patients. Free to join. A$5 per attended booking." />
     <meta property="og:image" content="https://quotemysmile.com.au/og.png" />
 
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./style.css?v=2026-06-15-v7" />
+    <link rel="stylesheet" href="./style.css?v=2026-07-28-v8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Allura&family=Inter:wght@300;400;500;600&display=swap"
     />
+    <script defer src="/waitlist.js?v=1"></script>
   </head>
   <body>
     <header class="topbar">
@@ -32,27 +33,41 @@
         <a href="/how-it-works.html">How it works</a>
         <a href="/for-dentists.html">For dentists</a>
         <a href="/#faq">FAQ</a>
-        <a class="nav-cta" href="#download">Get the app</a>
+        <a class="nav-cta" href="#reserve">Reserve your spot</a>
       </nav>
     </header>
 
     <main>
       <section class="dentist-hero">
-        <p class="kicker">FOR AHPRA-REGISTERED PRACTITIONERS</p>
-        <h1 class="display">Quote on <em>your terms.</em></h1>
+        <p class="kicker">FOUNDING PRACTICES · AHPRA-REGISTERED</p>
+        <h1 class="display">Be the practice patients <em>see first.</em></h1>
         <p class="lede">
-          Set your radius, pick the work you take, and respond to live patient
-          requests from the chair-side. Live indicative quoting, one revision,
-          no awkward phone tag — and no fee-splitting with us.
+          QuoteMySmile is a live quote marketplace: patients request an
+          indicative quote and pick a practice to book with. We're onboarding
+          founding practices now, before we open to patients in your area.
+          Reserve your spot, we verify your AHPRA registration, and you're
+          quoting from day one.
         </p>
         <div class="hero-cta">
-          <a class="cta-btn" href="#download">Get the app</a>
-          <a class="cta-link" href="#how">See how the marketplace works ›</a>
+          <a class="cta-btn" href="#reserve">Reserve your founding spot</a>
+          <a class="cta-link" href="#how">See how we verify you ›</a>
         </div>
         <p class="microcopy">
-          AHPRA-only. We verify against the public register before activating
-          you.
+          AHPRA-only. Free to reserve, no card, no commitment.
         </p>
+      </section>
+
+      <!-- FOUNDING / WHY NOW -->
+      <section class="founding">
+        <p class="kicker">WHY JOIN NOW</p>
+        <h2>Founding practices claim their area first.</h2>
+        <p>
+          We open area by area. When patients start requesting quotes near you,
+          the practices already onboarded are the ones they see and book.
+          Founding spots per area are limited, and once your area fills, new
+          practices wait behind the ones already in.
+        </p>
+        <span class="pill">Founding practices · limited spots per area</span>
       </section>
 
       <!-- WHAT YOU GET -->
@@ -73,12 +88,24 @@
           </li>
           <li>
             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 4l10 4v8c0 6-4 11-10 12-6-1-10-6-10-12V8z"/>
+              <path d="M11 16l4 4 6-7"/>
+            </svg>
+            <div>
+              <strong>Real patients, not cold leads.</strong>
+              Every request is a patient actively seeking treatment near you,
+              who books with a refundable deposit. Serious enquiries only.
+            </div>
+          </li>
+          <li>
+            <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
               <path d="M4 12a12 12 0 0124 0v8a4 4 0 01-4 4h-2v-12h6"/>
               <path d="M4 12v8a4 4 0 004 4h2V12H4"/>
             </svg>
             <div>
               <strong>One revision per quote.</strong>
-              No marathon negotiations. Strategic, not a death-spiral.
+              No marathon negotiations. Your first quote is your best foot
+              forward — strategic, not a death-spiral.
             </div>
           </li>
           <li>
@@ -88,7 +115,7 @@
             </svg>
             <div>
               <strong>AHPRA shield baked in.</strong>
-              Compliance filter screens every note for testimonial language,
+              A compliance filter screens every note for testimonial language,
               outcome promises, and guarantees before the patient sees it.
             </div>
           </li>
@@ -100,17 +127,7 @@
             <div>
               <strong>Self-pause anytime.</strong>
               Settings → toggle off. You silently drop out of the broadcast
-              until you toggle back on.
-            </div>
-          </li>
-          <li>
-            <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M16 4l-4 14h8l-4 14"/>
-            </svg>
-            <div>
-              <strong>Emergency premium toggle.</strong>
-              Up to +50% for after-hours / same-day. Transparent to the
-              patient — they see the uplift on the quote card.
+              until you toggle back on. Busy week? Pause it.
             </div>
           </li>
           <li>
@@ -120,7 +137,7 @@
             </svg>
             <div>
               <strong>No fee-splitting.</strong>
-              Treatment fees flow patient ↔ dentist directly. We don't take a
+              Treatment fees flow patient ↔ dentist directly. We never take a
               cut of your clinical work.
             </div>
           </li>
@@ -134,8 +151,8 @@
         <p class="price">A$5<span style="font-size:0.26em;color:var(--walnut);"> &nbsp;per attended booking</span></p>
         <p class="lede" style="margin: 0 auto;">
           No monthly fee. No per-quote charge. No take-rate on treatment fees.
-          We only get paid when a patient actually visits you — A$5 flat. Pay
-          on a single monthly invoice.
+          We only get paid when a patient actually visits you — A$5 flat, on a
+          single monthly invoice.
         </p>
       </section>
 
@@ -205,27 +222,56 @@
         </ul>
       </section>
 
-      <!-- DOWNLOAD CTA -->
-      <section id="download" class="cta">
-        <p class="kicker">GET THE APP · APPLY INSIDE</p>
-        <h2 class="display">Apply in <em>5 minutes.</em></h2>
-        <p class="lede tighter">
-          Scan with your phone. Choose "I'm a dentist" on signup. Type your
-          AHPRA number. We verify and activate you, usually within a business
-          day.
+      <!-- RESERVE -->
+      <section id="reserve" class="signup">
+        <p class="kicker">RESERVE YOUR SPOT</p>
+        <h2 class="display">Claim your <em>area.</em></h2>
+        <p class="lede tighter" style="margin:0 auto 32px;">
+          Takes 2 minutes. We verify your AHPRA registration and invite you the
+          moment we open to patients near you. No cost, no card, no commitment.
         </p>
-        <div class="qr-wrap">
-          <div class="qr-card">
-            <img src="/qr-app.svg" alt="Scan to download QuoteMySmile" width="200" height="200" />
-            <p>Sign up as dentist inside the app.</p>
-          </div>
-        </div>
-        <div class="badges centered-row">
-          <a class="badge" href="/app.html">App Store</a>
-          <a class="badge" href="/app.html">Google Play</a>
+        <div class="signup-card">
+          <form data-qms-form="dentist" novalidate>
+            <div class="signup-form">
+              <div class="field">
+                <label for="d-name">Your name</label>
+                <input id="d-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="d-clinic">Practice / clinic name</label>
+                <input id="d-clinic" name="clinic" type="text" autocomplete="organization" required />
+              </div>
+              <div class="field row2">
+                <div class="field">
+                  <label for="d-suburb">Suburb or postcode</label>
+                  <input id="d-suburb" name="suburb" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="d-ahpra">AHPRA no. <span class="opt">(optional)</span></label>
+                  <input id="d-ahpra" name="ahpra" type="text" inputmode="text" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="d-email">Email</label>
+                <input id="d-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="d-treatments">Treatments you'd quote <span class="opt">(optional)</span></label>
+                <input id="d-treatments" name="treatments" type="text" placeholder="e.g. general, whitening, veneers, implants" />
+              </div>
+              <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <button type="submit">Reserve my founding spot</button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+              <p class="form-note">
+                Free to join. A$5 per attended booking, nothing else. We verify
+                every practice against the AHPRA public register before
+                activating. We'll never share your details.
+              </p>
+            </div>
+          </form>
         </div>
         <p class="microcopy">
-          Questions? <a href="mailto:clinics@quotemysmile.com.au">clinics@quotemysmile.com.au</a>
+          Questions first? <a href="mailto:clinics@quotemysmile.com.au">clinics@quotemysmile.com.au</a>
         </p>
       </section>
     </main>
@@ -236,6 +282,7 @@
         <nav>
           <a href="/">Home</a>
           <a href="/how-it-works.html">How it works</a>
+          <a href="/waitlist.html">Patient waitlist</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
           <a href="/support.html">Support</a>

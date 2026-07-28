@@ -157,13 +157,13 @@ html = f'''<div class="qwrap">
     <div class="qcta">
       <h2>Claim your area before it fills.</h2>
       <p>It takes a few minutes to apply. Founding spots per area are limited. No cost to join, and you only ever pay when a patient attends.</p>
-      <a class="qbtn" href="https://quotemysmile.com/for-dentists">Apply as a founding practice &rarr;</a>
-      <p class="rea">Questions first? Reply to this email, it reaches a real person on our team at <a href="mailto:hello@quotemysmile.com">hello@quotemysmile.com</a>.</p>
+      <a class="qbtn" href="https://quotemysmile.com.au/for-dentists">Reserve your founding spot &rarr;</a>
+      <p class="rea">Questions first? Reply to this email, it reaches a real person on our team at <a href="mailto:clinics@quotemysmile.com.au">clinics@quotemysmile.com.au</a>.</p>
     </div>
 
     <!-- FOOTER -->
     <div class="qfoot">
-      <div class="qsign">Warm regards,<br><b>The QuoteMySmile team</b><br><a href="https://quotemysmile.com">quotemysmile.com</a></div>
+      <div class="qsign">Warm regards,<br><b>The QuoteMySmile team</b><br><a href="https://quotemysmile.com.au">quotemysmile.com.au</a></div>
       <div class="qfine">
         You received this because your practice is publicly listed as providing dental services in Australia, so we thought this founding invitation may be relevant. This is a one-off invite, not a newsletter.<br><br>
         QuoteMySmile Pty Ltd, Australia<br>
