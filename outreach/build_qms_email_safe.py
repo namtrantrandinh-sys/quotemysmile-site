@@ -187,7 +187,7 @@ HTML = f"""<!doctype html>
             <p style="margin:0 0 14px 0;font-family:{SANS};font-size:13px;line-height:1.6;color:{INK};">Warm regards,<br><strong>The QuoteMySmile team</strong><br><a href="https://quotemysmile.com.au" style="color:{TEAL};">quotemysmile.com.au</a></p>
             <p style="margin:0;padding-top:12px;border-top:1px solid {LINE};font-family:{SANS};font-size:11px;line-height:1.7;color:#9AA8A2;">
               You received this because your practice is publicly listed as providing dental services in Australia, so we thought this founding invitation would be relevant to your business. This is a one-off invitation, not a newsletter.<br><br>
-              QuoteMySmile Pty Ltd &middot; Melbourne, Victoria, Australia<br>
+              QuoteMySmile is a service of LORDLY PTY LTD &middot; ABN 19 697 848 132<br>Melbourne, Victoria, Australia<br>
               <a href="{{{{unsubscribe_url}}}}" style="color:#9AA8A2;">Unsubscribe</a> &middot; or simply reply with &ldquo;unsubscribe&rdquo; and we&rsquo;ll remove you.
             </p>
           </td>

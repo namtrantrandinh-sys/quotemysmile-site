@@ -166,7 +166,7 @@ html = f'''<div class="qwrap">
       <div class="qsign">Warm regards,<br><b>The QuoteMySmile team</b><br><a href="https://quotemysmile.com.au">quotemysmile.com.au</a></div>
       <div class="qfine">
         You received this because your practice is publicly listed as providing dental services in Australia, so we thought this founding invitation may be relevant. This is a one-off invite, not a newsletter.<br><br>
-        QuoteMySmile Pty Ltd, Australia<br>
+        QuoteMySmile is a service of LORDLY PTY LTD &middot; ABN 19 697 848 132<br>Melbourne, Victoria, Australia<br>
         <a href="{{{{unsubscribe_url}}}}">Unsubscribe</a> &middot; or reply with &ldquo;unsubscribe&rdquo;.
       </div>
     </div>
