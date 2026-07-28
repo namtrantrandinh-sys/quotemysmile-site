@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build the QuoteMySmile founding-dentist onboarding email:
-mint + teal palette, real logo (smile mark), and the '100s of dentists' line."""
+mint + teal palette, real logo (smile mark), and the founding-dentists line."""
 import base64, pathlib
 HERE = pathlib.Path(__file__).parent
 LOGO = "data:image/png;base64," + base64.b64encode((HERE / "qms-logo.png").read_bytes()).decode()
@@ -40,7 +40,7 @@ html = f'''<div class="qwrap">
   .qhero p {{ font:400 15.5px/1.66 var(--sans); color:var(--body); margin:0 auto; max-width:46ch; }}
   .qhero .who {{ color:var(--ink); font-weight:600; }}
 
-  /* why-now band (teal) with the 100s-of-dentists line */
+  /* why-now band (teal) with the founding-dentists line */
   .qwhy {{ padding:38px 34px; background:linear-gradient(160deg,var(--teal),var(--teal-dk)); color:#eaf5f0; text-align:center; }}
   .qwhy .eyebrow {{ color:var(--mint); }}
   .qwhy h2 {{ font:500 27px/1.2 var(--serif); color:#fff; margin:12px auto 12px; max-width:20ch; }}
@@ -109,10 +109,10 @@ html = f'''<div class="qwrap">
       <p><span class="who">QuoteMySmile is a live quote marketplace</span> where patients ask for a treatment quote and choose a practice to book with. We&rsquo;re onboarding practices now, before we open it to patients across Australia. Join early, and you&rsquo;re quoting from day one.</p>
     </div>
 
-    <!-- WHY NOW (100s of dentists) -->
+    <!-- WHY NOW (founding dentists) -->
     <div class="qwhy">
       <div class="eyebrow">Why joining now matters</div>
-      <h2>Join 100s of dentists already on QuoteMySmile.</h2>
+      <h2>Join the founding dentists on QuoteMySmile.</h2>
       <p>They&rsquo;re getting set up before we open to patients across Australia. When the first quote requests come in, the practices already here are the ones patients see and book.</p>
       <span class="pill">Founding practices &middot; limited spots per area</span>
     </div>
