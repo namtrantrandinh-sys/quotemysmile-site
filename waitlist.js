@@ -1,26 +1,25 @@
 /* QuoteMySmile — waitlist / founding-practice reservation form handler.
  * Static-site friendly. No framework, no build step.
  *
- * ── HOW TO CAPTURE SUBMISSIONS ───────────────────────────────────────────
- * Until you set an endpoint below, every form falls back to opening the
- * visitor's email app pre-addressed to us (works everywhere, zero setup).
+ * Submissions POST to /api/reserve — our own Cloudflare Pages Function, which
+ * stores the reservation in KV and emails a notification. See
+ * functions/api/reserve.js for the environment variables it needs.
  *
- * To capture to a database + get an email per signup (recommended, ~2 min):
- *   1. Create a free form at https://formspree.io  (one for patients, one for
- *      dentists), or use any endpoint that accepts a JSON/form POST.
- *   2. Paste each endpoint URL into ENDPOINTS below.
- * That's the only change needed — the forms start posting immediately.
- *
- * Prefer your own Supabase instead? See outreach/WAITLIST-SETUP.md for the
- * table + RLS SQL and how to point ENDPOINTS at the REST insert URL.
- * ─────────────────────────────────────────────────────────────────────────
+ * The mailto path below is now only a LAST-RESORT fallback for when that call
+ * fails outright (offline, endpoint down). It should never be the normal route:
+ * it depends on the visitor having a mail client set up and then pressing send
+ * themselves, and most simply do not — which loses the reservation silently.
  */
 (function () {
   'use strict';
 
+  // Both forms post to our own Cloudflare Pages Function, which stores the
+  // reservation and emails a notification. See functions/api/reserve.js for the
+  // environment variables it needs. Overridable per-kind if you ever want to
+  // route one of them somewhere else.
   var ENDPOINTS = {
-    patient: '',   // e.g. 'https://formspree.io/f/xxxxxxxx'
-    dentist: ''    // e.g. 'https://formspree.io/f/yyyyyyyy'
+    patient: '/api/reserve',
+    dentist: '/api/reserve'
   };
 
   var FALLBACK_EMAIL = {
@@ -71,7 +70,7 @@
   function showDone(form, kind) {
     var msg = form.getAttribute('data-done') ||
       (kind === 'dentist'
-        ? 'Your founding spot is reserved. We\'ll verify your AHPRA registration and invite you the moment we open to patients in your area.'
+        ? 'Your founding spot is reserved. We\'ll verify your AHPRA registration before you go live, and email you the moment we open to patients in your area.'
         : 'You\'re on the list. We\'ll email you the moment QuoteMySmile opens near you.');
     var done = document.createElement('div');
     done.className = 'signup-done';
@@ -112,6 +111,7 @@
 
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
+      picked.data.kind = kind;
       fetch(endpoint, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },

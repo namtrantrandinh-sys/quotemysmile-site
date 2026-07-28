@@ -1638,16 +1638,45 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
 .trust ul {
   padding: 0;
   list-style: none;
-  margin: 24px 0 0;
+  margin: 32px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
+@media (max-width: 780px) { .trust ul { grid-template-columns: 1fr; } }
+/* Dark glass. The light-glass recipe used elsewhere is a white pane over a pale
+   field; on this teal band the same treatment turns to milk. Here the pane is a
+   thin white veil instead, with the highlight along the top edge and the tint
+   pulled from the band itself, so it still reads as glass over colour. */
 .trust li {
-  padding: 22px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.92);
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  background: linear-gradient(152deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.09) 46%, rgba(255, 255, 255, 0.04) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -18px 30px -22px rgba(6, 34, 29, 0.55),
+    0 18px 36px -22px rgba(6, 34, 29, 0.5);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  font-size: 15.5px;
+  color: rgba(255, 255, 255, 0.94);
   line-height: 1.6;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              border-color 0.3s ease;
 }
-.trust li:last-child { border-bottom: 0; }
+.trust li:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -18px 30px -22px rgba(6, 34, 29, 0.6),
+    0 28px 54px -24px rgba(6, 34, 29, 0.58);
+}
+@media (prefers-reduced-motion: reduce) {
+  .trust li, .trust li:hover { transition: none; transform: none; }
+}
 .trust li strong {
   color: #ffffff;
   font-weight: 600;
@@ -2110,9 +2139,35 @@ footer {
 .hs-copy .waitlist-form button { background: var(--teal-dark); }
 .hs-copy .waitlist-form button:hover { background: #143a33; }
 
-.hs-stats { display: grid; gap: 22px; }
-@media (max-width: 900px) { .hs-stats { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+.hs-stats { display: grid; gap: 14px; }
+@media (max-width: 900px) { .hs-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
 @media (max-width: 480px) { .hs-stats { grid-template-columns: 1fr; } }
+/* Glass tiles on the mint panel. Lighter veil than the .trust cards because
+   this band is a paler mint, so a heavy white fill would flatten it out. */
+.hs-stat {
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 16px;
+  background: linear-gradient(152deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.14) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -14px 24px -20px rgba(31, 79, 71, 0.4),
+    0 12px 26px -18px rgba(31, 79, 71, 0.38);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.hs-stat:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -14px 24px -20px rgba(31, 79, 71, 0.45),
+    0 22px 42px -20px rgba(31, 79, 71, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hs-stat, .hs-stat:hover { transition: none; transform: none; }
+}
 .hs-stat .big {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(30px, 3.6vw, 44px);
@@ -2533,15 +2588,20 @@ footer {
 }
 .founding .pill {
   display: inline-block;
-  margin-top: 22px;
-  padding: 9px 18px;
+  margin-top: 24px;
+  padding: 11px 22px;
   border-radius: 999px;
-  background: rgba(169, 207, 192, 0.18);
-  border: 1px solid rgba(169, 207, 192, 0.5);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.1) 60%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 24px -14px rgba(6, 34, 29, 0.6);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #eaf5f0;
+  color: #f2fbf7;
 }
 
 /* Signup section (reserve / join) */
@@ -2656,26 +2716,25 @@ footer {
 /* QuoteMySmile — waitlist / founding-practice reservation form handler.
  * Static-site friendly. No framework, no build step.
  *
- * ── HOW TO CAPTURE SUBMISSIONS ───────────────────────────────────────────
- * Until you set an endpoint below, every form falls back to opening the
- * visitor's email app pre-addressed to us (works everywhere, zero setup).
+ * Submissions POST to /api/reserve — our own Cloudflare Pages Function, which
+ * stores the reservation in KV and emails a notification. See
+ * functions/api/reserve.js for the environment variables it needs.
  *
- * To capture to a database + get an email per signup (recommended, ~2 min):
- *   1. Create a free form at https://formspree.io  (one for patients, one for
- *      dentists), or use any endpoint that accepts a JSON/form POST.
- *   2. Paste each endpoint URL into ENDPOINTS below.
- * That's the only change needed — the forms start posting immediately.
- *
- * Prefer your own Supabase instead? See outreach/WAITLIST-SETUP.md for the
- * table + RLS SQL and how to point ENDPOINTS at the REST insert URL.
- * ─────────────────────────────────────────────────────────────────────────
+ * The mailto path below is now only a LAST-RESORT fallback for when that call
+ * fails outright (offline, endpoint down). It should never be the normal route:
+ * it depends on the visitor having a mail client set up and then pressing send
+ * themselves, and most simply do not — which loses the reservation silently.
  */
 (function () {
   'use strict';
 
+  // Both forms post to our own Cloudflare Pages Function, which stores the
+  // reservation and emails a notification. See functions/api/reserve.js for the
+  // environment variables it needs. Overridable per-kind if you ever want to
+  // route one of them somewhere else.
   var ENDPOINTS = {
-    patient: '',   // e.g. 'https://formspree.io/f/xxxxxxxx'
-    dentist: ''    // e.g. 'https://formspree.io/f/yyyyyyyy'
+    patient: '/api/reserve',
+    dentist: '/api/reserve'
   };
 
   var FALLBACK_EMAIL = {
@@ -2726,7 +2785,7 @@ footer {
   function showDone(form, kind) {
     var msg = form.getAttribute('data-done') ||
       (kind === 'dentist'
-        ? 'Your founding spot is reserved. We\'ll verify your AHPRA registration and invite you the moment we open to patients in your area.'
+        ? 'Your founding spot is reserved. We\'ll verify your AHPRA registration before you go live, and email you the moment we open to patients in your area.'
         : 'You\'re on the list. We\'ll email you the moment QuoteMySmile opens near you.');
     var done = document.createElement('div');
     done.className = 'signup-done';
@@ -2767,6 +2826,7 @@ footer {
 
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
+      picked.data.kind = kind;
       fetch(endpoint, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },

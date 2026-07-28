@@ -1,94 +1,56 @@
-# Waitlist / founding-practice forms — activation
+# Reservation capture — setup
 
-The two landing pages are **live-ready right now**:
+Both forms (`/waitlist` patient, `/for-dentists` founding practice) POST to
+**`/api/reserve`**, a Cloudflare Pages Function that lives in this repo at
+`functions/api/reserve.js`. Because the site is already on Cloudflare Pages it
+deploys with the site — no form service, no extra hosting, no account to create.
 
-- `/waitlist.html` — patient waitlist (also embedded on the homepage `#download` section + the homepage hero).
-- `/for-dentists.html` — dentist founding-practice reservation.
+It does two independent things with each submission, so neither is a single
+point of failure:
 
-Both use the shared handler `waitlist.js`. **Out of the box, with no setup, every
-submission opens the visitor's email app pre-addressed to you** (patients →
-`hello@quotemysmile.com.au`, dentists → `clinics@quotemysmile.com.au`). That works
-immediately and is fine for the concierge stage — every signup lands in your inbox.
+1. **Writes it to KV** — a durable record that survives regardless of email.
+2. **Emails you via Resend** — so you hear about it straight away.
 
-To **capture submissions to a database and get a clean email per signup**, do the
-2-minute step below. Nothing else on the pages needs to change.
+## What to set (Cloudflare dashboard → Pages project → Settings)
 
----
+**Environment variables**
 
-## Option A — Formspree (recommended, ~2 min, no code)
+| Name | Value |
+|---|---|
+| `RESEND_API_KEY` | QuoteMySmile's own Resend key. **Never LORDLY's** — a complaint against one brand would damage the other's sending reputation. |
+| `NOTIFY_EMAIL` | Where reservations land, e.g. `hello@quotemysmile.com.au` |
+| `FROM_EMAIL` | A verified Resend sender, e.g. `hello@mail.quotemysmile.com.au` |
 
-1. Go to <https://formspree.io> and create a free account.
-2. Create **two** forms: one named `patients`, one named `dentists`.
-   Set the notification email to the inbox you want (e.g. `hello@` and `clinics@`).
-3. Each form gives you an endpoint like `https://formspree.io/f/abcd1234`.
-4. Open `waitlist.js` and paste them into `ENDPOINTS`:
+**Bindings → KV namespace**
 
-   ```js
-   var ENDPOINTS = {
-     patient: 'https://formspree.io/f/abcd1234',
-     dentist: 'https://formspree.io/f/wxyz5678'
-   };
-   ```
+| Binding name | Namespace |
+|---|---|
+| `RESERVATIONS` | Create one (any name) and bind it as `RESERVATIONS` |
 
-5. Commit + push. Cloudflare Pages redeploys automatically. Done — the forms now
-   POST straight to Formspree (which stores them + emails you), with the email
-   fallback still kicking in only if the network call ever fails.
+Every one of these is optional in the sense that the endpoint still returns
+success without them — but then the submission has nowhere to go. **Set at least
+the KV binding before sending any traffic to the site.**
 
-The hidden `_gotcha` field on every form is a honeypot; Formspree drops spam that
-fills it, and `waitlist.js` silently no-ops it too.
+## Reading the reservations
 
----
+Dashboard → Workers & Pages → KV → your namespace. Keys are `dentist:<email>`
+and `patient:<email>`, so a repeat submission updates the existing entry instead
+of leaving you duplicates to reconcile. Values are JSON with name, clinic,
+suburb, AHPRA number, treatments/interest and a received timestamp.
 
-## Option B — Your own Supabase (keeps data in QuoteMySmile infra)
+## Why not mailto
 
-Project ref `mqlaoxcjebzsihiocmzm` (region `ap-southeast-2`).
+The forms previously fell back to opening the visitor's mail client with a
+prefilled message. That looked like it worked, but it needed the visitor to
+have a mail client configured **and** to press send — most never did, so the
+reservation vanished with no trace at either end. mailto now only triggers if
+the API call itself fails, and the visitor is told plainly that it happened.
 
-1. Create the table + insert-only RLS in the SQL editor:
+## AHPRA number
 
-   ```sql
-   create table if not exists public.waitlist_signups (
-     id          uuid primary key default gen_random_uuid(),
-     kind        text not null check (kind in ('patient','dentist')),
-     name        text,
-     email       text not null,
-     suburb      text,
-     -- dentist-only
-     clinic      text,
-     ahpra       text,
-     treatments  text,
-     -- patient-only
-     interest    text,
-     created_at  timestamptz not null default now()
-   );
-
-   alter table public.waitlist_signups enable row level security;
-
-   -- Anonymous visitors may INSERT only. No SELECT/UPDATE/DELETE for anon,
-   -- so the list is never publicly readable.
-   create policy "anon can insert waitlist"
-     on public.waitlist_signups
-     for insert to anon
-     with check (true);
-   ```
-
-2. In `waitlist.js`, point each endpoint at the REST insert URL **and add the
-   Supabase headers** to the `fetch` call (Supabase REST needs `apikey` +
-   `Authorization: Bearer <ANON_KEY>` + `Prefer: return=minimal`). The anon
-   ("publishable") key is safe to ship in client code — it only grants what RLS
-   above allows (insert, no read). Add a `kind` field to the POST body so rows
-   are tagged. Ask if you want me to wire this variant; Formspree is simpler
-   unless you specifically want the data in Supabase.
-
----
-
-## Where the pages are wired in
-
-- Homepage (`index.html`): hero CTA → `/waitlist.html`; nav "Join waitlist"; the
-  bottom `#download` section is now an inline email waitlist capture.
-- `how-it-works.html`: nav + body CTAs → `/waitlist.html`.
-- `for-dentists.html`: full reservation form in the `#reserve` section.
-- Clean URLs: `/waitlist` and `/for-dentists` (see `_redirects`).
-
-The App Store / Google Play links in `app.html` still contain
-`REPLACE_WITH_APP_ID` — swap those in and flip the CTAs back to "Get the app"
-once the app is live.
+Deliberately optional on the reservation form. Verification happens **before a
+practice goes live**, not at reservation, and the page copy says so. Supplying
+the number early just lets us check ahead of launch; if it is absent we ask at
+activation. Do not reword this to imply verification happens at signup — it
+does not, and a practice could otherwise believe it has been checked when it
+has not.
