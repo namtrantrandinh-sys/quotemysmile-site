@@ -109,11 +109,11 @@ html = f'''<div class="qwrap">
       <p><span class="who">QuoteMySmile is a live quote marketplace</span> where patients ask for a treatment quote and choose a practice to book with. We&rsquo;re onboarding practices now, before we open it to patients across Australia. Join early, and you&rsquo;re quoting from day one.</p>
     </div>
 
-    <!-- WHY NOW (founding dentists) -->
+    <!-- WHY NOW (FOMO: don't miss out, 100s of other dentists) -->
     <div class="qwhy">
-      <div class="eyebrow">Why joining now matters</div>
-      <h2>Join the founding dentists on QuoteMySmile.</h2>
-      <p>They&rsquo;re getting set up before we open to patients across Australia. When the first quote requests come in, the practices already here are the ones patients see and book.</p>
+      <div class="eyebrow">Don&rsquo;t miss out</div>
+      <h2>Join 100s of other dentists already on QuoteMySmile.</h2>
+      <p>They&rsquo;re claiming their areas before we open to patients across Australia. Once the quote requests start, patients book the practices already here, and founding spots in each area are limited. Miss the window and you&rsquo;re waiting behind them.</p>
       <span class="pill">Founding practices &middot; limited spots per area</span>
     </div>
 
@@ -146,8 +146,8 @@ html = f'''<div class="qwrap">
 
     <!-- CTA -->
     <div class="qcta">
-      <h2>Claim your practice&rsquo;s spot.</h2>
-      <p>It takes a few minutes to apply. No cost to join, and you only ever pay when a patient attends.</p>
+      <h2>Claim your area before it fills.</h2>
+      <p>It takes a few minutes to apply. Founding spots per area are limited. No cost to join, and you only ever pay when a patient attends.</p>
       <a class="qbtn" href="https://quotemysmile.com/for-dentists">Apply as a founding practice &rarr;</a>
       <p class="rea">Questions first? Reply to this email, it reaches a real person on our team at <a href="mailto:hello@quotemysmile.com">hello@quotemysmile.com</a>.</p>
     </div>
