@@ -37,7 +37,7 @@ from the heroes for that reason.
 
 ## Dentist-page model — `model-dentist.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/woman-in-eyeglasses-smiling-and-posing-16385779/
+- **Source:** Pexels — https://www.pexels.com/photo/studio-portrait-of-a-smiling-woman-in-a-leather-jacket-6211616/
 - **Licence:** Pexels Licence — free for commercial use, no attribution required.
 - Deliberately a different person from the homepage model so the two surfaces
   don't read as the same page.

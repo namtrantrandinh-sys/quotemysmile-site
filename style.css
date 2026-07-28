@@ -1769,8 +1769,14 @@ footer {
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  /* Grounds the cut-out on the mint field so it doesn't look pasted on. */
-  filter: drop-shadow(0 26px 38px rgba(24, 62, 55, 0.22));
+  /* Three stacked shadows, each doing a different job. Her dress is a near-white
+     mint on a mint band, so tone alone never separates them — the first, very
+     tight shadow traces the silhouette and gives the hem a real edge. The second
+     lifts her off the field, the third grounds her. */
+  filter:
+    drop-shadow(0 0 1px rgba(16, 54, 46, 0.62))
+    drop-shadow(0 3px 7px rgba(16, 54, 46, 0.3))
+    drop-shadow(0 26px 38px rgba(24, 62, 55, 0.22));
 }
 /* No photo supplied yet → hide the slot and tighten the stage so the
    typographic hero still reads as intentional rather than half-empty. */
