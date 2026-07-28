@@ -841,11 +841,20 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
   text-align: center;
   margin: 0 auto 56px;
 }
+/* All four handsets share one line. The phone is sized in `em` off a fluid
+   root so the row scales down together rather than wrapping to 3 + 1. */
 .feature-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 48px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2.2vw, 34px);
   align-items: end;
+  --phone-w: clamp(150px, 15.5vw, 232px);
+}
+@media (max-width: 860px) {
+  .feature-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; --phone-w: clamp(180px, 34vw, 260px); }
+}
+@media (max-width: 460px) {
+  .feature-row { grid-template-columns: 1fr; --phone-w: min(260px, 68vw); }
 }
 .feature-col {
   display: flex;
@@ -854,8 +863,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 40px 120px; }
   text-align: center;
 }
 .feature-col .phone-mini {
-  width: 260px;
-  height: 552px;
+  width: var(--phone-w, 260px);
+  height: calc(var(--phone-w, 260px) * 2.123);
   background: linear-gradient(
     160deg,
     #4a4543 0%,
@@ -1938,18 +1947,17 @@ footer {
   width: 100%;
   pointer-events: none;
 }
+/* Full-body figure: she stands ON the band, feet meeting the panel edge, so
+   there is no crop to hide and no negative offset. */
 .hs-person img {
   display: block;
-  height: clamp(300px, 46vw, 560px);
+  height: clamp(340px, 52vw, 620px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
   /* Grounds the cut-out on the mint field so it doesn't look pasted on. */
-  filter: drop-shadow(0 28px 40px rgba(24, 62, 55, 0.24));
-  /* Runs past the stage so the panel below crops her, as in the reference —
-     the torso crop in the source plate never shows as a hard edge. */
-  margin-bottom: -34px;
+  filter: drop-shadow(0 26px 38px rgba(24, 62, 55, 0.22));
 }
 /* No photo supplied yet → hide the slot and tighten the stage so the
    typographic hero still reads as intentional rather than half-empty. */
@@ -2665,7 +2673,7 @@ footer {
 
         <div class="sh-photo">
           <div class="frame is-graded">
-            <img src="/photos/model-portrait.webp" alt="Someone smiling, happy with their dental treatment" width="1000" height="1250" fetchpriority="high" decoding="async" />
+            <img src="/photos/model-portrait.webp" alt="A person smiling" width="1000" height="1250" fetchpriority="high" decoding="async" />
           </div>
 
           <div class="float-card fc-quotes">

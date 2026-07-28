@@ -1755,18 +1755,17 @@ footer {
   width: 100%;
   pointer-events: none;
 }
+/* Full-body figure: she stands ON the band, feet meeting the panel edge, so
+   there is no crop to hide and no negative offset. */
 .hs-person img {
   display: block;
-  height: clamp(300px, 46vw, 560px);
+  height: clamp(340px, 52vw, 620px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
   /* Grounds the cut-out on the mint field so it doesn't look pasted on. */
-  filter: drop-shadow(0 28px 40px rgba(24, 62, 55, 0.24));
-  /* Runs past the stage so the panel below crops her, as in the reference —
-     the torso crop in the source plate never shows as a hard edge. */
-  margin-bottom: -34px;
+  filter: drop-shadow(0 26px 38px rgba(24, 62, 55, 0.22));
 }
 /* No photo supplied yet → hide the slot and tighten the stage so the
    typographic hero still reads as intentional rather than half-empty. */
