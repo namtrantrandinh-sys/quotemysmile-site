@@ -20,7 +20,8 @@ from PIL import Image, ImageFilter
 PHOTOS = pathlib.Path("/Users/nam/quotemysmile-site/photos")
 
 
-def fill_holes(mask: Image.Image, w: int, h: int, thresh: int = 40) -> Image.Image:
+def fill_holes(mask: Image.Image, w: int, h: int, thresh: int = 40,
+               src: Image.Image = None, bg=None) -> Image.Image:
     """Make opaque any transparent region that does not reach the image border.
 
     Where a model's skin or clothing approaches the backdrop colour, the key
@@ -50,12 +51,49 @@ def fill_holes(mask: Image.Image, w: int, h: int, thresh: int = 40) -> Image.Ima
                     stack.append((nx, ny))
 
     px = list(mask.getdata())
-    filled = sum(1 for i, v in enumerate(px) if v < thresh and not outside[i])
+
+    # Not every enclosed hole is damage. Background genuinely shows through gaps
+    # the subject encloses — between a hand and a cheek, or an arm and the waist.
+    # Filling those paints a patch of backdrop back onto the figure. So when the
+    # source is available, keep a hole transparent if what lies under it still
+    # looks like the backdrop; fill it only if it looks like subject.
+    keep_transparent = set()
+    if src is not None and bg is not None:
+        spx = src.load()
+        holes = {}
+        for i, v in enumerate(px):
+            if v < thresh and not outside[i]:
+                holes.setdefault(_hole_id(i, w, px, outside, thresh), []).append(i)
+        for hid, idxs in holes.items():
+            sample = idxs[:: max(1, len(idxs) // 40)]
+            dists = []
+            for i in sample:
+                c = spx[i % w, i // w]
+                dists.append(((c[0] - bg[0]) ** 2 + (c[1] - bg[1]) ** 2 + (c[2] - bg[2]) ** 2) ** 0.5)
+            if dists and sorted(dists)[len(dists) // 2] < 60:
+                keep_transparent.update(idxs)
+
+    filled = sum(1 for i, v in enumerate(px)
+                 if v < thresh and not outside[i] and i not in keep_transparent)
     out = Image.new("L", (w, h))
-    out.putdata([255 if (v < thresh and not outside[i]) else v for i, v in enumerate(px)])
+    out.putdata([255 if (v < thresh and not outside[i] and i not in keep_transparent) else v
+                 for i, v in enumerate(px)])
     if filled:
-        print(f"filled {filled} px of interior holes")
+        print(f"filled {filled} px of interior holes"
+              + (f", left {len(keep_transparent)} px of see-through gaps" if keep_transparent else ""))
     return out
+
+
+def _hole_id(start, w, px, outside, thresh):
+    """Cheap grouping key for an enclosed hole — its connected-region seed.
+
+    Full labelling would be exact but this runs per pixel on a large mask; the
+    row-run seed is enough to group a hole's pixels together for the colour test.
+    """
+    y, x = start // w, start % w
+    while x > 0 and px[y * w + (x - 1)] < thresh and not outside[y * w + (x - 1)]:
+        x -= 1
+    return y * w + x
 
 
 def close_mask(mask: Image.Image, radius: int) -> Image.Image:
@@ -71,7 +109,7 @@ def close_mask(mask: Image.Image, radius: int) -> Image.Image:
 
 
 def key_chroma(path: str, max_side=(1100, 1650), hue_tol=26, sat_min=0.34,
-               val_min=0.55, close=0, erode=0):
+               val_min=0.55, close=0, erode=0, strip_tol=55):
     """Key a VIVID coloured backdrop on hue + saturation instead of RGB distance.
 
     A saturated seamless (orange, teal, yellow) is almost always lit unevenly —
@@ -110,14 +148,37 @@ def key_chroma(path: str, max_side=(1100, 1650), hue_tol=26, sat_min=0.34,
     mask.putdata(alpha)
     mask = mask.filter(ImageFilter.GaussianBlur(1.0))
     mask = mask.point(lambda v: 0 if v < 128 else 255)
-    mask = fill_holes(mask, w, h)
+    bg_rgb = im.convert("RGB").resize((1, 1), Image.LANCZOS).getpixel((0, 0))
+    cor = im.convert("RGB").load()
+    bg_rgb = cor[4, 4]
+    mask = fill_holes(mask, w, h, src=im.convert("RGB"), bg=bg_rgb)
     if close:
         mask = close_mask(mask, close)
-        mask = fill_holes(mask, w, h)
+        mask = fill_holes(mask, w, h, src=im.convert("RGB"), bg=bg_rgb)
     if erode:
         mask = mask.filter(ImageFilter.MinFilter(erode * 2 + 1))
         mask = mask.filter(ImageFilter.GaussianBlur(0.6))
     mask = keep_largest_blob(mask, w, h)
+
+    # Final sweep: any pixel still opaque whose colour is essentially the
+    # backdrop is leftover seamless, not subject. This catches SHADOWED backdrop
+    # in enclosed gaps — between a hand and a cheek, say — which is too dim and
+    # desaturated to trip the hue/sat/value test, yet is plainly background.
+    # Safe because a real subject sits far from a vivid backdrop in RGB: this
+    # model's skin is ~166 away from her amber seamless, so strip_tol has room.
+    rgbp = im.load()
+    mp = mask.load()
+    stripped = 0
+    for y in range(h):
+        for x in range(w):
+            if mp[x, y] > 40:
+                c = rgbp[x, y]
+                if ((c[0] - bg_rgb[0]) ** 2 + (c[1] - bg_rgb[1]) ** 2
+                        + (c[2] - bg_rgb[2]) ** 2) ** 0.5 < strip_tol:
+                    mp[x, y] = 0
+                    stripped += 1
+    if stripped:
+        print(f"stripped {stripped} px of residual backdrop")
 
     fig = im.convert("RGBA")
     fig.putalpha(mask)

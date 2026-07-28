@@ -5,7 +5,7 @@ not be on the site.
 
 ## Homepage model — `model-cutout.webp`, `model-portrait.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/smiling-woman-with-braces-on-orange-background-35537895/
+- **Source:** Pexels — https://www.pexels.com/photo/photo-of-woman-wearing-red-top-3760737/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
 - **Processing:** keyed with `outreach/make_model_asset.py --chroma` (her orange
