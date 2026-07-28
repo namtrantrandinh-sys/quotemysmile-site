@@ -20,7 +20,57 @@ from PIL import Image, ImageFilter
 PHOTOS = pathlib.Path("/Users/nam/quotemysmile-site/photos")
 
 
-def key_figure(path: str, max_side=(1100, 1650), near=None, far=None):
+def fill_holes(mask: Image.Image, w: int, h: int, thresh: int = 40) -> Image.Image:
+    """Make opaque any transparent region that does not reach the image border.
+
+    Where a model's skin or clothing approaches the backdrop colour, the key
+    punches holes INSIDE the silhouette — the smudges that show up across a
+    cheek or a forearm. Those holes are enclosed by subject, so flooding the
+    transparent areas inward from the border marks everything that is genuinely
+    outside her; whatever transparency is left over is a hole, and gets filled.
+    """
+    a = mask.load()
+    outside = bytearray(w * h)
+    stack = []
+    for x in range(w):
+        for y in (0, h - 1):
+            if a[x, y] < thresh:
+                stack.append((x, y)); outside[y * w + x] = 1
+    for y in range(h):
+        for x in (0, w - 1):
+            if a[x, y] < thresh and not outside[y * w + x]:
+                stack.append((x, y)); outside[y * w + x] = 1
+    while stack:
+        x, y = stack.pop()
+        for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+            if 0 <= nx < w and 0 <= ny < h:
+                j = ny * w + nx
+                if not outside[j] and a[nx, ny] < thresh:
+                    outside[j] = 1
+                    stack.append((nx, ny))
+
+    px = list(mask.getdata())
+    filled = sum(1 for i, v in enumerate(px) if v < thresh and not outside[i])
+    out = Image.new("L", (w, h))
+    out.putdata([255 if (v < thresh and not outside[i]) else v for i, v in enumerate(px)])
+    if filled:
+        print(f"filled {filled} px of interior holes")
+    return out
+
+
+def close_mask(mask: Image.Image, radius: int) -> Image.Image:
+    """Morphological close — seals narrow channels the flood fill crept through.
+
+    fill_holes only rescues FULLY enclosed holes. When the key breaks through a
+    thin bridge (a jawline against a similar-toned backdrop) the damage is
+    connected to the outside and survives. Dilating then eroding pinches those
+    channels shut first, so the following fill_holes can rescue them.
+    """
+    size = radius * 2 + 1
+    return mask.filter(ImageFilter.MaxFilter(size)).filter(ImageFilter.MinFilter(size))
+
+
+def key_figure(path: str, max_side=(1100, 1650), near=None, far=None, close=0, erode=0):
     im = Image.open(path).convert("RGB")
     im.thumbnail(max_side, Image.LANCZOS)
     w, h = im.size
@@ -81,6 +131,19 @@ def key_figure(path: str, max_side=(1100, 1650), near=None, far=None):
     mask = mask.filter(ImageFilter.GaussianBlur(1.0))
     mask = mask.point(lambda v: 0 if v < 46 else min(255, int((v - 46) * 1.55)))
 
+    mask = fill_holes(mask, w, h)
+    if close:
+        mask = close_mask(mask, close)
+        mask = fill_holes(mask, w, h)
+    if erode:
+        # Pull the silhouette in. On plates where the model's skin sits inside
+        # the backdrop's distance range there is no band that both clears the
+        # backdrop and spares her face: raise it and the face breaks up, lower
+        # it and a pale fringe of leftover seamless survives. So key LOW to keep
+        # the face intact, then trim that fringe off the edge here.
+        size = erode * 2 + 1
+        mask = mask.filter(ImageFilter.MinFilter(size))
+        mask = mask.filter(ImageFilter.GaussianBlur(0.6))
     mask = keep_largest_blob(mask, w, h)
 
     fig = im.convert("RGBA")
@@ -152,9 +215,11 @@ def main():
     ap.add_argument("--fill", type=float, default=0.80)
     ap.add_argument("--near", type=float, help="below this RGB distance = backdrop")
     ap.add_argument("--far", type=float, help="above this RGB distance = subject")
+    ap.add_argument("--close", type=int, default=0, help="morphological close radius, seals matte breakthroughs")
+    ap.add_argument("--erode", type=int, default=0, help="trim N px off the silhouette, removes leftover backdrop fringe")
     a = ap.parse_args()
 
-    fig = key_figure(a.source, near=a.near, far=a.far)
+    fig = key_figure(a.source, near=a.near, far=a.far, close=a.close, erode=a.erode)
     print("figure:", fig.size)
 
     card = mint_card(fig, fill=a.fill)
