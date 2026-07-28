@@ -3,10 +3,9 @@
 Keep this file current. If an image's provenance can't be stated here, it should
 not be on the site.
 
-## Hero model — `model-cutout.webp`, `model-portrait.webp`
+## Homepage model — `model-cutout.webp`, `model-portrait.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/posing-woman-in-jean-jacket-16396072/
-- **Photographer:** Tessy Agbonome
+- **Source:** Pexels — https://www.pexels.com/photo/confident-woman-posing-in-casual-attire-29047215/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
 - **Processing:** background keyed out and the figure composited on brand mint
