@@ -45,8 +45,9 @@
           <p class="lede">
             QuoteMySmile is a live quote marketplace: patients send their photos,
             real dentists quote, and the patient books. Hundreds of practices are
-            already on board. We open to patients area by area, and the practices
-            already in are the ones they see first.
+            already on board. Reserve a founding spot and you'll be first to get
+            the app when it launches, with your place held for your area and
+            community.
           </p>
           <div class="hero-cta">
             <a class="cta-btn" href="#reserve">Reserve your founding spot</a>
@@ -58,8 +59,8 @@
         </div>
 
         <div class="sh-photo">
-          <div class="frame">
-            <img src="/photos/smile-hero.jpg" alt="A patient smiling after treatment" width="1200" height="1500" />
+          <div class="frame is-graded">
+            <img src="/photos/model-portrait.webp" alt="A patient smiling after treatment" width="1000" height="1250" fetchpriority="high" decoding="async" />
           </div>
 
           <div class="float-card fc-quotes">
@@ -85,35 +86,45 @@
         <div class="count-xl">100s</div>
         <h2>of dentists have claimed their area.</h2>
         <p>
-          We open to patients area by area. When the quote requests start near
-          you, the practices already on board are the ones patients see and book.
-          Founding spots per area are limited, and once your area fills, new
+          A founding place means you're first to get the app when it launches,
+          with your spot secured for your area and community. We open to patients
+          area by area, and the practices already on board are the ones patients
+          see and book. Places per area are limited &mdash; once yours fills, new
           practices wait behind the ones already in.
         </p>
         <span class="pill">Founding practices · limited spots per area</span>
       </section>
 
-      <!-- PHOTO STRIP -->
-      <section class="props" style="padding-bottom:18px;">
+      <!-- EDITORIAL LEDGER — typographic, no photography -->
+      <section class="props" style="padding-bottom:0;">
         <h2 class="display"><em>Real</em> patients, ready to book.</h2>
         <p class="lede tighter">
           Every request is someone actively seeking treatment near you, who puts
           down a refundable deposit to book. Not a cold lead list.
         </p>
       </section>
-      <section class="photo-strip">
-        <figure>
-          <img src="/photos/smile-teal.jpg" alt="A patient smiling" loading="lazy" width="800" height="1067" />
-          <figcaption><b>They come to you</b>Geofenced to your radius, 2–30 km.</figcaption>
-        </figure>
-        <figure>
-          <img src="/photos/aligner.jpg" alt="A clear aligner held up" loading="lazy" width="800" height="1200" />
-          <figcaption><b>Work worth quoting</b>Whitening, veneers, aligners, implants.</figcaption>
-        </figure>
-        <figure>
-          <img src="/photos/cast.jpg" alt="A dental study cast" loading="lazy" width="800" height="533" />
-          <figcaption><b>You stay in control</b>Quote what suits. Pause anytime.</figcaption>
-        </figure>
+      <section class="ledger">
+        <div class="ledger-row">
+          <span class="ledger-num">01</span>
+          <div>
+            <h3>They come to you</h3>
+            <p>Geofenced to the radius you set, 2&ndash;30 km. You never see a request from outside it.</p>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-num">02</span>
+          <div>
+            <h3>Work worth quoting</h3>
+            <p>Whitening, veneers, aligners, crowns and implants &mdash; alongside the everyday general work.</p>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-num">03</span>
+          <div>
+            <h3>You stay in control</h3>
+            <p>Quote only what suits your books. Never obligated, and you can pause the whole feed anytime.</p>
+          </div>
+        </div>
       </section>
 
       <!-- WHAT YOU GET -->
@@ -271,9 +282,46 @@
         <p class="kicker">RESERVE YOUR SPOT</p>
         <h2 class="display">Claim your <em>area.</em></h2>
         <p class="lede tighter" style="margin:0 auto 8px;">
-          Takes 2 minutes. We verify your AHPRA registration and invite you the
-          moment we open to patients near you. No cost, no card, no commitment.
+          Takes 2 minutes. We verify your AHPRA registration, then hold your
+          place. No cost, no card, no commitment.
         </p>
+
+        <!-- What the reservation actually gets them -->
+        <ul class="reserve-what">
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="9" y="3" width="14" height="26" rx="3"/>
+              <path d="M14 25h4"/>
+            </svg>
+            <div>
+              <strong>First in when we launch</strong>
+              You get the app and your download link ahead of everyone else,
+              before we open to patients.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 28s9-7.2 9-13.6A9 9 0 0 0 7 14.4C7 20.8 16 28 16 28z"/>
+              <circle cx="16" cy="14" r="3.2"/>
+            </svg>
+            <div>
+              <strong>Your area is held for you</strong>
+              Founding places are capped per area, and yours is set aside for
+              your suburb and community.
+            </div>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M6 16.5l6 6L26 9"/>
+            </svg>
+            <div>
+              <strong>Quoting from day one</strong>
+              Verified and switched on before the first patient requests come
+              through near you.
+            </div>
+          </li>
+        </ul>
+
         <div class="signup-card">
           <form data-qms-form="dentist" novalidate>
             <div class="signup-form">
@@ -324,8 +372,8 @@
     <div class="sticky-cta" id="stickyCta" hidden>
       <div class="inner">
         <p class="msg">
-          <b>Founding spots are limited per area.</b>
-          <span class="long"> Hundreds of practices are already on board.</span>
+          <b>Be first to get the app when it launches.</b>
+          <span class="long"> Founding places are held per area, and they are limited.</span>
         </p>
         <a class="go" href="#reserve">Reserve your spot</a>
         <button class="close" type="button" aria-label="Dismiss">&times;</button>
