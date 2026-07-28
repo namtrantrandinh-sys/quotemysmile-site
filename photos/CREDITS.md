@@ -5,10 +5,10 @@ not be on the site.
 
 ## Homepage model — `model-cutout.webp`, `model-portrait.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/portrait-of-a-woman-on-a-black-background-16586566/
+- **Source:** Pexels — https://www.pexels.com/photo/smiling-woman-with-braces-on-orange-background-35537895/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
-- **Processing:** keyed with `outreach/make_model_asset.py --chroma` (her orange
+- **Processing:** teeth whitened with `outreach/whiten_teeth.py`; keyed with `outreach/make_model_asset.py --chroma` (her orange
   seamless is vivid and unevenly lit, so it keys on hue+saturation+brightness
   rather than colour distance) and composited on brand mint.
 
