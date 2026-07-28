@@ -85,7 +85,12 @@ def inline(page: str, font_css: str) -> str:
             return m.group(0)
         return f'{attr}="{data_uri(f)}"'
 
-    src = re.sub(r'(src|href)="(/[\w./-]+\.(?:png|jpg|jpeg|svg))"', img_repl, src)
+    # NOTE: keep this extension list in sync with what /photos actually holds.
+    # webp was missing once and the hero model silently vanished from every
+    # published preview — the path 404s under the artifact CSP and the <img>
+    # onerror handler then hides the slot, so it fails invisibly.
+    src = re.sub(r'(src|href)="(/[\w./-]+\.(?:png|jpe?g|svg|webp|avif|gif))"',
+                 img_repl, src)
     # smile.png is referenced from CSS (the wordmark underline).
     smile = ROOT / "smile.png"
     if smile.is_file():
