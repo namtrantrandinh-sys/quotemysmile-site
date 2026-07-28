@@ -1683,6 +1683,215 @@ footer {
 }
 
 /* ============================================================ */
+/* Photo-led split hero (dentist + patient landing)              */
+/* ============================================================ */
+.split-hero {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: 56px;
+  align-items: center;
+  padding: 66px 0 76px;
+}
+@media (max-width: 900px) {
+  .split-hero { grid-template-columns: 1fr; gap: 34px; padding: 44px 0 56px; }
+}
+
+/* Narrower column than a full-width hero, so step the display size down —
+   at the global clamp the Allura script pushes this to three ragged lines. */
+.sh-copy .display { margin: 16px 0 20px; font-size: clamp(32px, 4.1vw, 52px); }
+.sh-copy .lede { max-width: 46ch; font-size: 17px; }
+
+/* Scarcity chip above the headline */
+.fomo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 15px 8px 11px;
+  border-radius: 999px;
+  background: rgba(47, 111, 102, 0.09);
+  border: 1px solid rgba(47, 111, 102, 0.26);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--teal-dark);
+  font-weight: 500;
+}
+.fomo-chip .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #3f9c86;
+  box-shadow: 0 0 0 4px rgba(63, 156, 134, 0.18);
+  animation: fomoPulse 2.2s ease-in-out infinite;
+}
+@keyframes fomoPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(63, 156, 134, 0.16); }
+  50%      { box-shadow: 0 0 0 7px rgba(63, 156, 134, 0.05); }
+}
+@media (prefers-reduced-motion: reduce) { .fomo-chip .dot { animation: none; } }
+
+/* Photo panel with floating proof cards */
+.sh-photo { position: relative; }
+.sh-photo .frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #cfe7dd, #a9cfc0);
+  box-shadow: 0 34px 70px rgba(31, 79, 71, 0.26);
+  aspect-ratio: 4 / 5;
+}
+.sh-photo .frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+}
+/* Warm mint wash so stock photography sits inside the brand */
+.sh-photo .frame::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(169, 207, 192, 0.12), rgba(31, 79, 71, 0.18));
+  pointer-events: none;
+}
+
+/* Floating card that overlaps the photo */
+.float-card {
+  position: absolute;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+  padding: 14px 16px;
+  box-shadow: 0 18px 40px rgba(31, 79, 71, 0.26);
+  backdrop-filter: saturate(160%) blur(8px);
+}
+.float-card .fc-label {
+  font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--taupe); margin: 0 0 6px;
+}
+.float-card .fc-row {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+  font-size: 13.5px; color: var(--espresso);
+}
+.float-card .fc-row + .fc-row { margin-top: 7px; }
+.float-card .fc-price { font-weight: 600; color: var(--teal-dark); }
+.float-card .fc-meta { font-size: 11px; color: var(--taupe); margin: 8px 0 0; }
+
+.float-card.fc-quotes { left: -26px; bottom: 12%; width: 232px; }
+.float-card.fc-fee    { right: -20px; top: 9%; width: 176px; text-align: center; }
+.float-card.fc-fee .big {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 40px; line-height: 1; color: var(--teal); margin: 2px 0 4px;
+}
+@media (max-width: 1080px) {
+  .float-card.fc-quotes { left: -10px; }
+  .float-card.fc-fee { right: -6px; }
+}
+@media (max-width: 560px) {
+  .float-card.fc-quotes { left: 8px; bottom: 8px; width: 200px; }
+  .float-card.fc-fee { right: 8px; top: 8px; width: 140px; padding: 11px 12px; }
+  .float-card.fc-fee .big { font-size: 30px; }
+}
+
+/* ============================================================ */
+/* Scarcity meter                                                */
+/* ============================================================ */
+.meter { margin: 26px auto 0; max-width: 430px; }
+.meter .track {
+  height: 7px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+.meter .fill {
+  height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, #dff3eb, #ffffff);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
+}
+.meter .legend {
+  display: flex; justify-content: space-between;
+  margin-top: 10px; font-size: 11.5px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+}
+/* Meter on a cream background instead of the teal band */
+.meter.on-cream .track { background: rgba(47, 111, 102, 0.14); }
+.meter.on-cream .fill { background: linear-gradient(90deg, var(--teal), #6fae9d); box-shadow: none; }
+.meter.on-cream .legend { color: var(--taupe); }
+
+/* Big shining count inside the founding band */
+.founding .count-xl {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(64px, 11vw, 130px);
+  line-height: 0.95;
+  color: #fff;
+  margin: 4px 0 2px;
+  text-shadow: 0 0 34px rgba(169, 207, 192, 0.6);
+}
+.founding .count-sub {
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82); margin: 0 0 6px;
+}
+
+/* ============================================================ */
+/* Photo strip                                                   */
+/* ============================================================ */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 8px 0 84px;
+}
+@media (max-width: 720px) { .photo-strip { grid-template-columns: 1fr; } }
+.photo-strip figure {
+  position: relative; margin: 0; overflow: hidden;
+  aspect-ratio: 3 / 4; background: #dbeae3;
+  box-shadow: 0 16px 38px rgba(31, 79, 71, 0.16);
+}
+.photo-strip img { width: 100%; height: 100%; object-fit: cover; }
+.photo-strip figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 34px 18px 16px;
+  background: linear-gradient(to top, rgba(20, 52, 46, 0.86), transparent);
+  color: #fff; font-size: 13.5px; line-height: 1.45;
+}
+.photo-strip figcaption b { display: block; font-weight: 600; margin-bottom: 2px; }
+
+/* ============================================================ */
+/* Sticky reserve bar                                            */
+/* ============================================================ */
+.sticky-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 40;
+  background: rgba(24, 62, 55, 0.96);
+  backdrop-filter: saturate(160%) blur(10px);
+  border-top: 1px solid rgba(169, 207, 192, 0.4);
+  transform: translateY(110%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sticky-cta.show { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
+.sticky-cta .inner {
+  max-width: 1180px; margin: 0 auto;
+  padding: 13px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+@media (max-width: 720px) { .sticky-cta .inner { padding: 11px 18px; gap: 12px; } }
+.sticky-cta .msg { color: #eaf5f0; font-size: 14px; line-height: 1.4; }
+.sticky-cta .msg b { color: #fff; font-weight: 600; }
+@media (max-width: 560px) { .sticky-cta .msg .long { display: none; } }
+.sticky-cta .go {
+  flex: 0 0 auto;
+  background: #fff; color: #14342e;
+  padding: 12px 22px;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 600; text-decoration: none;
+  white-space: nowrap;
+}
+.sticky-cta .go:hover { background: var(--gold); text-decoration: none; color: #14342e; }
+.sticky-cta .close {
+  background: none; border: 0; color: rgba(234, 245, 240, 0.7);
+  font-size: 20px; line-height: 1; cursor: pointer; padding: 4px 2px;
+}
+.sticky-cta .close:hover { color: #fff; }
+
+/* ============================================================ */
 /* Founding band + signup forms (waitlist / reservation)         */
 /* ============================================================ */
 

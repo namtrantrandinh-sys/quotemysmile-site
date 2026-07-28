@@ -38,36 +38,86 @@
     </header>
 
     <main>
-      <section class="dentist-hero">
-        <p class="kicker">FOUNDING PRACTICES · AHPRA-REGISTERED</p>
-        <h1 class="display">Be the practice patients <em>see first.</em></h1>
-        <p class="lede">
-          QuoteMySmile is a live quote marketplace: patients request an
-          indicative quote and pick a practice to book with. We're onboarding
-          founding practices now, before we open to patients in your area.
-          Reserve your spot, we verify your AHPRA registration, and you're
-          quoting from day one.
-        </p>
-        <div class="hero-cta">
-          <a class="cta-btn" href="#reserve">Reserve your founding spot</a>
-          <a class="cta-link" href="#how">See how we verify you ›</a>
+      <section class="split-hero">
+        <div class="sh-copy">
+          <span class="fomo-chip"><span class="dot"></span> Founding spots are filling area by area</span>
+          <h1 class="display">Be the practice patients <em>see first.</em></h1>
+          <p class="lede">
+            QuoteMySmile is a live quote marketplace: patients send their photos,
+            real dentists quote, and the patient books. Hundreds of practices are
+            already on board. We open to patients area by area, and the practices
+            already in are the ones they see first.
+          </p>
+          <div class="hero-cta">
+            <a class="cta-btn" href="#reserve">Reserve your founding spot</a>
+            <a class="cta-link" href="#how">See how we verify you ›</a>
+          </div>
+          <p class="microcopy">
+            AHPRA-only. Free to reserve, no card, no commitment.
+          </p>
         </div>
-        <p class="microcopy">
-          AHPRA-only. Free to reserve, no card, no commitment.
-        </p>
+
+        <div class="sh-photo">
+          <div class="frame">
+            <img src="/photos/smile-hero.jpg" alt="A patient smiling after treatment" width="1200" height="1500" />
+          </div>
+
+          <div class="float-card fc-quotes">
+            <p class="fc-label">Live quote request · Camberwell</p>
+            <div class="fc-row"><span>Your practice</span><span class="fc-price">$349</span></div>
+            <div class="fc-row"><span>Nearby practice</span><span>$385</span></div>
+            <div class="fc-row"><span>Nearby practice</span><span>$420</span></div>
+            <p class="fc-meta">Patient chooses · you set your price</p>
+          </div>
+
+          <div class="float-card fc-fee">
+            <p class="fc-label">You pay</p>
+            <div class="big">$5</div>
+            <p class="fc-meta">per attended booking.<br />Nothing else, ever.</p>
+          </div>
+        </div>
       </section>
 
       <!-- FOUNDING / WHY NOW -->
       <section class="founding">
-        <p class="kicker">WHY JOIN NOW</p>
-        <h2>Founding practices claim their area first.</h2>
+        <p class="kicker">DON'T MISS OUT</p>
+        <p class="count-sub">Already on QuoteMySmile</p>
+        <div class="count-xl">100s</div>
+        <h2>of dentists have claimed their area.</h2>
         <p>
-          We open area by area. When patients start requesting quotes near you,
-          the practices already onboarded are the ones they see and book.
+          We open to patients area by area. When the quote requests start near
+          you, the practices already on board are the ones patients see and book.
           Founding spots per area are limited, and once your area fills, new
           practices wait behind the ones already in.
         </p>
+        <div class="meter" aria-hidden="true">
+          <div class="track"><div class="fill" style="width:72%"></div></div>
+          <div class="legend"><span>Melbourne inner-east</span><span>Filling fast</span></div>
+        </div>
         <span class="pill">Founding practices · limited spots per area</span>
+      </section>
+
+      <!-- PHOTO STRIP -->
+      <section class="props" style="padding-bottom:18px;">
+        <h2 class="display"><em>Real</em> patients, ready to book.</h2>
+        <p class="lede tighter">
+          Every request is someone actively seeking treatment near you, who puts
+          down a refundable deposit to book. Not a cold lead list.
+        </p>
+      </section>
+      <section class="photo-strip">
+        <figure>
+          <img src="/photos/smile-teal.jpg" alt="A patient smiling" loading="lazy" width="800" height="1067" />
+          <figcaption><b>They come to you</b>Geofenced to your radius, 2–30 km.</figcaption>
+        </figure>
+        <figure>
+          <img src="/photos/aligner.jpg" alt="A clear aligner held up" loading="lazy" width="800" height="1200" />
+          <figcaption><b>Work worth quoting</b>Whitening, veneers, aligners, implants.</figcaption>
+        </figure>
+        <figure>
+          <img src="/photos/cast.jpg" alt="A dental study cast" loading="lazy" width="800" height="533" />
+          <figcaption><b>You stay in control</b>Quote what suits. Pause anytime.</figcaption>
+        </figure>
       </section>
 
       <!-- WHAT YOU GET -->
@@ -226,10 +276,14 @@
       <section id="reserve" class="signup">
         <p class="kicker">RESERVE YOUR SPOT</p>
         <h2 class="display">Claim your <em>area.</em></h2>
-        <p class="lede tighter" style="margin:0 auto 32px;">
+        <p class="lede tighter" style="margin:0 auto 8px;">
           Takes 2 minutes. We verify your AHPRA registration and invite you the
           moment we open to patients near you. No cost, no card, no commitment.
         </p>
+        <div class="meter on-cream" style="margin-bottom:30px;" aria-hidden="true">
+          <div class="track"><div class="fill" style="width:72%"></div></div>
+          <div class="legend"><span>Founding spots claimed</span><span>Limited per area</span></div>
+        </div>
         <div class="signup-card">
           <form data-qms-form="dentist" novalidate>
             <div class="signup-form">
@@ -275,6 +329,43 @@
         </p>
       </section>
     </main>
+
+    <!-- Sticky reserve bar — appears once you've scrolled past the hero -->
+    <div class="sticky-cta" id="stickyCta" hidden>
+      <div class="inner">
+        <p class="msg">
+          <b>Founding spots are limited per area.</b>
+          <span class="long"> Hundreds of practices are already on board.</span>
+        </p>
+        <a class="go" href="#reserve">Reserve your spot</a>
+        <button class="close" type="button" aria-label="Dismiss">&times;</button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var bar = document.getElementById('stickyCta');
+        var target = document.getElementById('reserve');
+        if (!bar || !target) return;
+        var dismissed = false;
+        bar.hidden = false;
+        bar.querySelector('.close').addEventListener('click', function () {
+          dismissed = true;
+          bar.classList.remove('show');
+        });
+        function update() {
+          if (dismissed) return;
+          var past = window.scrollY > window.innerHeight * 0.85;
+          // Hide again once the form itself is on screen — the bar would only
+          // duplicate the CTA the visitor is already looking at.
+          var r = target.getBoundingClientRect();
+          var formVisible = r.top < window.innerHeight && r.bottom > 0;
+          bar.classList.toggle('show', past && !formVisible);
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      })();
+    </script>
 
     <footer>
       <div class="footer-top">
