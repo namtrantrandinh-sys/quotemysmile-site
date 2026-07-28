@@ -1621,16 +1621,21 @@ footer {
 /* ============================================================ */
 /* Showcase hero — giant wordmark behind a cut-out practitioner  */
 /* ============================================================ */
+/* True full-bleed: main is capped at 1180px and centred, so cancelling its
+   padding alone still left cream gutters. This escapes the container entirely
+   so the mint runs edge to edge of the viewport.
+   Deeper mint than before — the model's dress is pale mint, and on the old
+   lighter band her silhouette washed out against it. */
 .hero-showcase {
-  /* Break out of main's 40px padding for an edge-to-edge band. */
-  margin: 0 -40px 0;
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+  max-width: 100vw;
   background:
-    radial-gradient(120% 90% at 80% 0%, rgba(255, 255, 255, 0.28), transparent 62%),
-    linear-gradient(168deg, #b6dbcb 0%, #9ecdba 44%, #86bfaa 100%);
+    radial-gradient(120% 90% at 80% 0%, rgba(255, 255, 255, 0.22), transparent 62%),
+    linear-gradient(168deg, #9ecdba 0%, #86bfaa 46%, #6fae9d 100%);
   position: relative;
   overflow: hidden;
 }
-@media (max-width: 720px) { .hero-showcase { margin: 0 -22px; } }
 
 .hs-stage {
   position: relative;

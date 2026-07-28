@@ -34,3 +34,12 @@ are derived from assets already shipping in the QuoteMySmile app
 (`Projects/quotemysmile/assets/images`). Same owner, so no third-party licence
 question — but the two human plates there are tightly cropped and were retired
 from the heroes for that reason.
+
+## Dentist-page model — `model-dentist.webp`
+
+- **Source:** Pexels — https://www.pexels.com/photo/woman-in-eyeglasses-smiling-and-posing-16385779/
+- **Licence:** Pexels Licence — free for commercial use, no attribution required.
+- Deliberately a different person from the homepage model so the two surfaces
+  don't read as the same page.
+- Same usage limits as above: no model release, so never caption or position her
+  as a patient or as endorsing the service.
