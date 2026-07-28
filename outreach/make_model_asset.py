@@ -247,10 +247,10 @@ def key_figure(path: str, max_side=(1100, 1650), near=None, far=None, close=0, e
     mask = mask.filter(ImageFilter.GaussianBlur(1.0))
     mask = mask.point(lambda v: 0 if v < 46 else min(255, int((v - 46) * 1.55)))
 
-    mask = fill_holes(mask, w, h)
+    mask = fill_holes(mask, w, h, src=im, bg=bg)
     if close:
         mask = close_mask(mask, close)
-        mask = fill_holes(mask, w, h)
+        mask = fill_holes(mask, w, h, src=im, bg=bg)
     if erode:
         # Pull the silhouette in. On plates where the model's skin sits inside
         # the backdrop's distance range there is no band that both clears the
