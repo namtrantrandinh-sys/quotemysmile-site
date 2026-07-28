@@ -1650,10 +1650,29 @@ footer {
   padding: 0;
 }
 .bullets-2col li {
-  padding: 18px 22px;
-  border: 1px solid var(--linen);
-  background: var(--eggshell);
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.76) 0%, rgba(255, 255, 255, 0.38) 44%, rgba(233, 244, 238, 0.52) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.32),
+    0 16px 34px -20px rgba(31, 79, 71, 0.28);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
   color: var(--walnut);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.bullets-2col li:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.4),
+    0 26px 50px -22px rgba(31, 79, 71, 0.38);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bullets-2col li, .bullets-2col li:hover { transition: none; transform: none; }
 }
 .bullets-2col li strong {
   color: var(--espresso);
@@ -1822,7 +1841,9 @@ footer {
    there is no crop to hide and no negative offset. */
 .hs-person img {
   display: block;
-  height: clamp(340px, 52vw, 620px);
+  /* Held below the source's own height (1345px @1x) so a retina screen still
+     has pixels in hand — she stays crisp instead of upscaling on large displays. */
+  height: clamp(300px, 42vw, 545px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -2047,14 +2068,29 @@ footer {
 .meter.on-cream .fill { background: linear-gradient(90deg, var(--teal), #6fae9d); box-shadow: none; }
 .meter.on-cream .legend { color: var(--taupe); }
 
-/* Big shining count inside the founding band */
+/* The count, set as a glass numeral rather than flat Cormorant caps. Small
+   caps were rendering "100S"; tabular lining figures keep it reading as a
+   NUMBER, and the layered highlight gives it dimension against the teal. */
 .founding .count-xl {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(64px, 11vw, 130px);
-  line-height: 0.95;
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 200;
+  font-size: clamp(78px, 13vw, 168px);
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  font-variant-numeric: lining-nums tabular-nums;
   color: #fff;
-  margin: 4px 0 2px;
-  text-shadow: 0 0 34px rgba(169, 207, 192, 0.6);
+  margin: 6px 0 2px;
+  background: linear-gradient(176deg, #ffffff 0%, #f2fbf7 38%, #b9dccd 74%, #8fc3ae 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.55))
+    drop-shadow(0 14px 26px rgba(8, 40, 34, 0.42))
+    drop-shadow(0 0 42px rgba(169, 207, 192, 0.5));
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .founding .count-xl { -webkit-text-fill-color: #fff; color: #fff; }
 }
 .founding .count-sub {
   font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -2102,15 +2138,33 @@ footer {
   .reserve-what { grid-template-columns: 1fr; max-width: 460px; gap: var(--space-s); }
 }
 .reserve-what li {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-s);
   align-items: start;
   padding: var(--space-m);
-  background: var(--card, var(--eggshell));
-  border: 1px solid var(--hair, var(--linen));
-  border-radius: var(--r-md, 14px);
-  box-shadow: var(--paper-card);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.4) 44%, rgba(233, 244, 238, 0.55) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.32),
+    0 16px 34px -20px rgba(31, 79, 71, 0.3);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.reserve-what li:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.4),
+    0 26px 50px -22px rgba(31, 79, 71, 0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reserve-what li, .reserve-what li:hover { transition: none; transform: none; }
 }
 .reserve-what .icon {
   width: 26px; height: 26px;
@@ -2135,21 +2189,54 @@ footer {
 }
 
 /* ============================================================ */
-/* Editorial ledger rows (replaces the photo strip)              */
+/* Editorial ledger rows — glass panes, not flat rules           */
 /* ============================================================ */
 .ledger {
+  position: relative;
   padding: var(--space-m) 0 var(--space-2xl);
-  border-bottom: 1px solid var(--hair, var(--linen));
+  display: grid;
+  gap: 16px;
+}
+/* Colour under the glass so the panes have something to refract. */
+.ledger::before {
+  content: "";
+  position: absolute;
+  inset: -4% -5%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 14% 18%, rgba(169, 207, 192, 0.5), transparent 70%),
+    radial-gradient(40% 50% at 88% 82%, rgba(47, 111, 102, 0.2), transparent 68%);
+  filter: blur(16px);
 }
 .ledger-row {
   display: grid;
-  grid-template-columns: minmax(64px, 8%) 1fr;
+  grid-template-columns: minmax(58px, 7%) 1fr;
   gap: var(--space-m);
   align-items: start;
-  padding: var(--space-l) 0;
-  border-top: 1px solid var(--hair, var(--linen));
+  padding: var(--space-l) var(--space-l) var(--space-l) var(--space-m);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.38) 44%, rgba(233, 244, 238, 0.55) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.35),
+    0 16px 34px -20px rgba(31, 79, 71, 0.3);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-.ledger-row:first-child { border-top: 0; }
+.ledger-row:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -16px 26px -20px rgba(31, 79, 71, 0.4),
+    0 26px 50px -22px rgba(31, 79, 71, 0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ledger-row, .ledger-row:hover { transition: none; transform: none; }
+}
 @media (max-width: 560px) {
   .ledger-row { grid-template-columns: 1fr; gap: var(--space-2xs); }
 }
@@ -2272,10 +2359,17 @@ footer {
 .signup-card {
   max-width: 520px;
   margin: 0 auto;
-  background: var(--eggshell);
-  border: 1px solid var(--linen);
   padding: 34px 34px 30px;
   text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 24px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.46) 44%, rgba(233, 244, 238, 0.6) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -20px 34px -24px rgba(31, 79, 71, 0.32),
+    0 26px 54px -26px rgba(31, 79, 71, 0.36);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
 @media (max-width: 560px) { .signup-card { padding: 26px 20px 24px; } }
 

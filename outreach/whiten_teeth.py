@@ -27,13 +27,19 @@ def main():
     src, dst = sys.argv[1], sys.argv[2]
     x0, y0, x1, y1 = (int(v) for v in sys.argv[3:7])
     strength = float(sys.argv[7]) if len(sys.argv) > 7 else 0.72
+    # Teeth toward the corners of a smile sit in shadow: darker and more
+    # saturated than the front ones. Tight gates whiten the middle and leave the
+    # outer teeth yellow, which looks worse than not whitening at all. Lips and
+    # gums are already excluded by HUE, so these two can be opened up safely.
+    sat_max = float(sys.argv[8]) if len(sys.argv) > 8 else SAT_MAX
+    val_min = float(sys.argv[9]) if len(sys.argv) > 9 else VAL_MIN
 
     im = Image.open(src).convert("RGBA")
     rgb = im.convert("RGB")
     hsv = rgb.convert("HSV")
     hp, op = hsv.load(), im.load()
 
-    smax, vmin = int(SAT_MAX * 255), int(VAL_MIN * 255)
+    smax, vmin = int(sat_max * 255), int(val_min * 255)
     touched = 0
     for y in range(max(0, y0), min(im.size[1], y1)):
         for x in range(max(0, x0), min(im.size[0], x1)):
