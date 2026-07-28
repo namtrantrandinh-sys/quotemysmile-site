@@ -84,6 +84,45 @@ def fill_holes(mask: Image.Image, w: int, h: int, thresh: int = 40,
     return out
 
 
+def soften_and_despill(fig: Image.Image, bg, feather=1.4, despill=True) -> Image.Image:
+    """Give the matte a soft edge and strip the backdrop's colour from it.
+
+    Two things make a cut-out look like bad photoshop, and both live at the
+    hair line:
+
+    1. A BINARY alpha. Real hair edges are partly transparent; a hard 0/255
+       mask gives a stencilled outline no amount of tidying fixes. Feathering
+       the alpha restores the transition.
+    2. COLOUR CONTAMINATION. A pixel on the edge of the hair is a blend of hair
+       and backdrop, so against a black plate it carries a dark rim, and against
+       a coloured one a coloured rim. Dropped onto mint that rim reads as dirt.
+       Un-mixing solves it: the observed pixel is a*F + (1-a)*BG, so the true
+       foreground is F = (observed - (1-a)*BG) / a.
+    """
+    fig = fig.convert("RGBA")
+    a = fig.getchannel("A").filter(ImageFilter.GaussianBlur(feather))
+    fig.putalpha(a)
+
+    if not despill or bg is None:
+        return fig
+
+    px = fig.load()
+    w, h = fig.size
+    fixed = 0
+    for y in range(h):
+        for x in range(w):
+            r, g, b, al = px[x, y]
+            if 8 < al < 248:  # only the transition band carries the rim
+                f = al / 255.0
+                nr = int(max(0, min(255, (r - (1 - f) * bg[0]) / f)))
+                ng = int(max(0, min(255, (g - (1 - f) * bg[1]) / f)))
+                nb = int(max(0, min(255, (b - (1 - f) * bg[2]) / f)))
+                px[x, y] = (nr, ng, nb, al)
+                fixed += 1
+    print(f"despilled {fixed} edge px")
+    return fig
+
+
 def _hole_id(start, w, px, outside, thresh):
     """Cheap grouping key for an enclosed hole — its connected-region seed.
 
@@ -182,7 +221,8 @@ def key_chroma(path: str, max_side=(1100, 1650), hue_tol=26, sat_min=0.34,
 
     fig = im.convert("RGBA")
     fig.putalpha(mask)
-    box = mask.getbbox()
+    fig = soften_and_despill(fig, bg_rgb)
+    box = fig.getchannel("A").getbbox()
     return fig.crop(box) if box else fig
 
 
@@ -245,7 +285,7 @@ def key_figure(path: str, max_side=(1100, 1650), near=None, far=None, close=0, e
     mask = Image.new("L", (w, h))
     mask.putdata(alpha)
     mask = mask.filter(ImageFilter.GaussianBlur(1.0))
-    mask = mask.point(lambda v: 0 if v < 46 else min(255, int((v - 46) * 1.55)))
+    mask = mask.point(lambda v: 0 if v < 30 else min(255, int((v - 30) * 1.30)))
 
     mask = fill_holes(mask, w, h, src=im, bg=bg)
     if close:
@@ -264,7 +304,8 @@ def key_figure(path: str, max_side=(1100, 1650), near=None, far=None, close=0, e
 
     fig = im.convert("RGBA")
     fig.putalpha(mask)
-    box = mask.getbbox()
+    fig = soften_and_despill(fig, bg)
+    box = fig.getchannel("A").getbbox()
     return fig.crop(box) if box else fig
 
 
