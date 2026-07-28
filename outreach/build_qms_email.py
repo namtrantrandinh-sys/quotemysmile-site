@@ -43,7 +43,16 @@ html = f'''<div class="qwrap">
   /* why-now band (teal) with the founding-dentists line */
   .qwhy {{ padding:38px 34px; background:linear-gradient(160deg,var(--teal),var(--teal-dk)); color:#eaf5f0; text-align:center; }}
   .qwhy .eyebrow {{ color:var(--mint); }}
-  .qwhy h2 {{ font:500 27px/1.2 var(--serif); color:#fff; margin:12px auto 12px; max-width:20ch; }}
+  .qwhy h2 {{ font:500 28px/1.2 var(--serif); color:#fff; margin:12px auto 12px; max-width:20ch; }}
+  .qwhy h2 .count {{ display:inline-block; font-weight:800; font-size:1.5em; line-height:1;
+    color:#F3FBF8; letter-spacing:.5px; text-shadow:0 0 22px rgba(169,207,192,.75), 0 1px 0 rgba(0,0,0,.14); }}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)) {{
+    .qwhy h2 .count {{ background:linear-gradient(100deg,#DFF3EB 18%,#FFFFFF 42%,#A9CFC0 58%,#DFF3EB 82%);
+      background-size:220% auto; -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; text-shadow:none;
+      filter:drop-shadow(0 0 15px rgba(169,207,192,.6)); animation:qshine 3.4s linear infinite; }}
+  }}
+  @keyframes qshine {{ to {{ background-position:220% center; }} }}
   .qwhy p {{ font:400 14.5px/1.66 var(--sans); color:rgba(255,255,255,.85); margin:0 auto; max-width:44ch; }}
   .qwhy .pill {{ display:inline-block; margin-top:20px; padding:9px 18px; border-radius:999px;
     background:rgba(169,207,192,.2); border:1px solid rgba(169,207,192,.5);
@@ -112,7 +121,7 @@ html = f'''<div class="qwrap">
     <!-- WHY NOW (FOMO: don't miss out, 100s of other dentists) -->
     <div class="qwhy">
       <div class="eyebrow">Don&rsquo;t miss out</div>
-      <h2>Join 100s of other dentists already on QuoteMySmile.</h2>
+      <h2>Join <span class="count">100s</span> of other dentists already on QuoteMySmile.</h2>
       <p>They&rsquo;re claiming their areas before we open to patients across Australia. Once the quote requests start, patients book the practices already here, and founding spots in each area are limited. Miss the window and you&rsquo;re waiting behind them.</p>
       <span class="pill">Founding practices &middot; limited spots per area</span>
     </div>
