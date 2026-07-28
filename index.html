@@ -160,19 +160,26 @@
             </span>
           </div>
 
-          <!-- Giant wordmark sits behind the practitioner -->
+          <!-- Solid wordmark, behind the portrait -->
           <p class="hs-word" aria-hidden="true">QUOTE<em>my</em>SMILE</p>
 
-          <!-- Drop a transparent cut-out PNG at /hero-dentist.png to fill this.
-               If the file is absent the slot self-hides and the typographic
-               hero still reads cleanly. -->
+          <!-- Cut-out portrait, keyed off the studio backdrop so it layers in
+               front of the wordmark. Slot self-hides if the file ever 404s. -->
           <div class="hs-person">
             <img
-              src="/hero-dentist.png"
-              alt="An AHPRA-registered Australian dentist"
+              src="/photos/model-cutout.webp"
+              alt="Someone smiling, happy with their dental treatment"
+              width="900"
+              height="1051"
+              fetchpriority="high"
+              decoding="async"
               onerror="this.closest('.hs-person').classList.add('is-empty')"
             />
           </div>
+
+          <!-- Same wordmark again, stroke-only, painted OVER the portrait so the
+               letterforms read as continuous while she stands inside them. -->
+          <p class="hs-word hs-word-outline" aria-hidden="true">QUOTE<em>my</em>SMILE</p>
         </div>
 
         <div class="hs-panel">
