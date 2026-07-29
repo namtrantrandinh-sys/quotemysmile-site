@@ -8,16 +8,21 @@ mail client.)
 
 ## Current setup — no account, no keys
 
-Both forms post to **FormSubmit** (`https://formsubmit.co/ajax/hello@quotemysmile.com.au`),
-configured in `waitlist.js`. Each reservation is emailed to that inbox as a
-table. Nothing to sign up for and no API key in the repo.
+Both forms post to **FormSubmit**, configured in `waitlist.js`. Each reservation
+is emailed as a table. Nothing to sign up for and no API key in the repo.
+
+The target is currently **`namtrantrandinh@gmail.com`** — deliberately, because
+it is an inbox that EXISTS. It was previously addressed to
+`hello@quotemysmile.com.au`, which has no mailbox behind it, so every
+reservation was posted into nothing. Move it once that mailbox is real; see
+`EMAIL-SETUP.md`.
 
 ### ⚠️ One-time step before this captures anything
 
-The **first** submission triggers a confirmation email to
-`hello@quotemysmile.com.au`. **Click the link in it once.** Until you do,
-submissions are held and not delivered. Do this before sending any traffic:
-submit the form yourself once, then check that inbox.
+The **first** submission triggers a confirmation email to that address. **Click
+the link in it once.** Until you do, submissions are held and not delivered. Do
+this before sending any traffic: submit the form yourself once, then check the
+inbox.
 
 ## Moving to something sturdier later
 
