@@ -2724,11 +2724,12 @@ footer {
  * that address. Click the link in it once and every submission after that is
  * delivered automatically. Until it is clicked, submissions are held.
  *
- * INBOX is deliberately an address that EXISTS. hello@quotemysmile.com.au has
- * no mailbox behind it yet, so pointing capture there silently discarded every
- * reservation. Change this the day that mailbox is real — and prefer
- * FormSubmit's alias token over a raw address, since this file is public and a
- * plain address in client-side source gets scraped.
+ * INBOX is deliberately an address that EXISTS. It was hello@quotemysmile.com.au,
+ * which has no mailbox behind it, so every reservation was posted into nothing.
+ * Switch it the day that mailbox is real — run outreach/set_contact_email.py
+ * --live, which moves this and the other eight files together. Prefer
+ * FormSubmit's alias token over a raw address once you do: this file is public
+ * and a plain address in client-side source gets scraped.
  *
  * To move to a different provider later (Formspree, Basin, your own API), just
  * change ENDPOINT — everything else here is provider-agnostic.

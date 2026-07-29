@@ -43,10 +43,10 @@ SENT_LOG = HERE / "sent.log"
 SUPPRESS = HERE / "suppress.txt"
 
 FROM = "QuoteMySmile <hello@mail.quotemysmile.com.au>"
-REPLY_TO = "clinics@quotemysmile.com.au"
+REPLY_TO = "namtrantrandinh@gmail.com"
 SUBJECT = "Founding practice spot for {practice} in {suburb}"
 SUBJECT_NO_SUBURB = "A founding practice spot for {practice}"
-UNSUB_MAILTO = "mailto:clinics@quotemysmile.com.au?subject=unsubscribe"
+UNSUB_MAILTO = "mailto:namtrantrandinh@gmail.com?subject=unsubscribe"
 UNSUB_URL = "https://quotemysmile.com.au/unsubscribe"
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")

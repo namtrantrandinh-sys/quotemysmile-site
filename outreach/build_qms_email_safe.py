@@ -177,7 +177,7 @@ HTML = f"""<!doctype html>
             <a href="{CTA_URL}" style="display:inline-block;padding:17px 34px;background-color:{TEAL};color:#FFFFFF;font-family:{SANS};font-size:15px;font-weight:bold;text-decoration:none;border-radius:26px;">Reserve your founding spot &rarr;</a>
             <!--<![endif]-->
 
-            <p style="margin:20px 0 0 0;font-family:{SANS};font-size:12px;line-height:1.6;color:{MUTED};">Questions first? Just reply to this email &mdash; it reaches a real person at <a href="mailto:clinics@quotemysmile.com.au" style="color:{TEAL};">clinics@quotemysmile.com.au</a>.</p>
+            <p style="margin:20px 0 0 0;font-family:{SANS};font-size:12px;line-height:1.6;color:{MUTED};">Questions first? Just reply to this email &mdash; it reaches a real person at <a href="mailto:namtrantrandinh@gmail.com" style="color:{TEAL};">namtrantrandinh@gmail.com</a>.</p>
           </td>
         </tr>
 
