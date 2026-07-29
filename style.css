@@ -1870,10 +1870,9 @@ footer {
    there is no crop to hide and no negative offset. */
 .hs-person img {
   display: block;
-  /* A full-length figure is narrow, so it needs more height than a waist-up
-     crop to hold the frame. Still capped well under the source's own 1400px so
-     a retina screen has pixels in hand rather than upscaling. */
-  height: clamp(330px, 50vw, 650px);
+  /* Held below the source's own height so a retina screen still has pixels in
+     hand — she stays crisp instead of upscaling on large displays. */
+  height: clamp(300px, 42vw, 545px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
