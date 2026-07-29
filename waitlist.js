@@ -9,13 +9,19 @@
  * that address. Click the link in it once and every submission after that is
  * delivered automatically. Until it is clicked, submissions are held.
  *
+ * INBOX is deliberately an address that EXISTS. hello@quotemysmile.com.au has
+ * no mailbox behind it yet, so pointing capture there silently discarded every
+ * reservation. Change this the day that mailbox is real — and prefer
+ * FormSubmit's alias token over a raw address, since this file is public and a
+ * plain address in client-side source gets scraped.
+ *
  * To move to a different provider later (Formspree, Basin, your own API), just
  * change ENDPOINT — everything else here is provider-agnostic.
  */
 (function () {
   'use strict';
 
-  var INBOX = 'hello@quotemysmile.com.au';
+  var INBOX = 'namtrantrandinh@gmail.com';
   var ENDPOINT = 'https://formsubmit.co/ajax/' + INBOX;
 
   function collect(form) {
