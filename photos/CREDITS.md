@@ -3,9 +3,9 @@
 Keep this file current. If an image's provenance can't be stated here, it should
 not be on the site.
 
-## Homepage model — `model-cutout.webp`, `model-portrait.webp`
+## Homepage hero cut-out — `model-cutout.webp`
 
-- **Source:** Pexels — https://www.pexels.com/photo/smiling-woman-with-braces-on-orange-background-35537895/
+- **Source:** Pexels — https://www.pexels.com/photo/confident-woman-posing-in-casual-attire-29047215/
 - **Licence:** [Pexels Licence](https://www.pexels.com/license/) — free for
   commercial use, no attribution required, modification permitted.
 - **Processing:** teeth whitened with `outreach/whiten_teeth.py`; keyed with `outreach/make_model_asset.py --chroma` (her orange
@@ -43,3 +43,11 @@ from the heroes for that reason.
   don't read as the same page.
 - Same usage limits as above: no model release, so never caption or position her
   as a patient or as endorsing the service.
+
+## Patient waitlist model — `model-portrait.webp`
+
+- **Source:** Pexels — https://www.pexels.com/photo/smiling-woman-with-braces-on-orange-background-35537895/
+- **Licence:** Pexels Licence — free for commercial use, no attribution required.
+- Teeth whitened with `outreach/whiten_teeth.py`. Same usage limits as above:
+  no model release, so never caption or position her as a patient or as
+  endorsing the service.
